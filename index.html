@@ -21,7 +21,7 @@
                                  <span class="bold">Welcome to symptom checker, an online tool that helps recognize symptoms<br> and identify the care that you may need.</span> <br><br>
                                  <span class="color">It is intended for informational and educational purposes only.</span><br>
                                  It is not a substitute for professional medical advice, diagnosis or treatment.<br>
-                                 Never ignore professional medical advice in seeking treatment.
+                                 Never ignore professional medical advice in seeking treatment.<br>
                                  If you think you may have a medical emergency,<br><span class="color">immediately call your doctor or dial 911.</span><br>
                             </div>
                           </div>
@@ -61,42 +61,67 @@
                           <li><input type="checkbox" checked=""><i></i>
                             <h3>Diagnosis Questions</h3>
                             <div class="artlist">
-                              <div class="artlist_content">
-                                   Answer Questions Below:
+                                   <div class="artlist_content"style="font-style:italic;font-size: 12pt;">
+                                        This section involves a question and answer portion.
+                                        Answering additional questions could either help to confirm conditions, by increasing its probability and ruling out other, more serious health problems.
+                                   </div>
                               </div>
-                              <div class="artlist_content">
-                                   
-                              </div>
-                            </div>
+                                   <!-- Renders main symtom here ------->
+                                 <div class="artlist">
+                                    <div class="artlist_content" style="font-weight:bold;">
+                                          Main Symptom:
+                                    </div>
+                                 </div>
+
+                                   <div class="artlist">
+                                       <div id="main_symptom"class="artlist_content" style="display:block;">
+                                            Headache
+                                       </div>
+                                   </div>
+                                   <!-- Renders questions here -------->
+
+                                 <div class="artlist">
+                                        <div id="questions"class="artlist_content" style="font-weight:bold;">
+                                             For an improved diagnosis please
+                                             answer questions below:
+                                        </div>
+
+                                      <div class="artlist">
+                                             <div id="question"class="artlist_content">
+                                                  This is my question
+                                             </div>
+                                        </div>
+                                        <!-- Answers here -------->
+                                      <div class="artlist">
+                                             <div id="choide_id"class="artlist_content">
+                                                  <button id="present" type="button" name="yes" style="display: inline-block;">Yes</button>
+                                                  <button id="absent" type="button" name="no" style="display: inline-block;">No</button>
+                                                  <button id="unknown" type="button" name="unknown" style="display: inline-block;">I don't know</button>
+                                             </div>
+                                 </div>
                           </li>
 
                           <li><input type="checkbox" checked=""><i></i>
                             <h3>Conditions</h3>
-                            <div class="artlist">
-                              <div class="artlist_content">
-                                   Some content!
-                              </div>
-                            </div>
-                            <div class="artlist">
-                              <div class="artlist_content">
-                                   Some content!
-                              </div>
-                            </div>
-                            <div class="artlist">
-                              <div class="artlist_content">
-                                   Some content!
-                              </div>
-                            </div>
-                            <div class="artlist">
-                              <div class="artlist_content">
-                                   Some content!
-                              </div>
-                            </div>
-                            <div class="artlist">
-                              <div class="artlist_content">
-                                   Some content!
-                              </div>
-                            </div>
+                                 <div class="artlist">
+                                      <div class="artlist_content">
+                                           <table>
+                                             <tr>
+                                               <th>Condition</th>
+                                               <th>Probability</th>
+                                             </tr>
+                                             <tr>
+                                               <td>Condition 1</td>
+                                               <td>90%</td>
+                                             </tr>
+                                             <tr>
+                                               <td>Condition 2</td>
+                                               <td>80%</td>
+                                             </tr>
+                                           </table>
+
+                                      </div>
+                                 </div>
                           </li>
                         </ul>
                  </div> <!-- End Accordian -->

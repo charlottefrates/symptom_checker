@@ -16,8 +16,10 @@ var firstRequest    = {
                               "cache-control": "no-cache",
                               },
                          "processData": false,
-                         "data":"{\n\t\"text\": \"My head hurts\"\n}"//JSON.stringify(data)
+                         "data":"{\n\t\"text\": \"My head hurts\"\n}", //JSON.stringify(data) 03.27.2017 RITIKA TO CHECK ON WHY THIS ISNT WORKING
                     }
+
+
 
 //main event handler
 $('#info_submit').on('click',function(){
@@ -38,7 +40,20 @@ $('#info_submit').on('click',function(){
                          // first request response
                          $.ajax(firstRequest).done(function (response) {
                            console.log('First Request Response:'+ response);
+                           $('#main_symptom').text(response); // ASK RITIKA HOW TO STORE RESPONSE INTO VARIABLE AND RENDER ONLY CERTAIN VALUES INTO DOM
                          })
+});
+
+//responseData will be used to POST next request to start generating questions to narrow down conditions
+//responseData.evience will changed as each question gets answered then gets sends back to server to list possible conditions
+var responseData = {
+     "sex":sex, // user generated data
+     "age":age, // user generated data
+     "evidence":[{
+          //"id":"" this portion is what is includef in first response
+          //"choice_id":"" this portion is what is includef in first response
+     }]
+}
 
 /*
 var diagnosisRequest = {
@@ -53,25 +68,15 @@ var diagnosisRequest = {
                               "cache-control": "no-cache",
                               },
                          "processData": false,
-                         "data": "{\n  \"sex\": \"female\",
-                                   \n  \"age\": 30,
-                                   \n  \"evidence\": [\n    {\n      \"id\": \"s_21\",
-                                   \n  \"choice_id\": \"present\"\n    }\n  ]\n}"
+                         "data": "{\n  \"sex\": \"female\",\n  \"age\": 30,\n  \"evidence\": [\n    {\n      \"id\": \"s_21\",\n  \"choice_id\": \"present\"\n    }\n  ]\n}", //responseData
+                         "extras": {"ignore_groups":true} //ignores group questions and ONLY returns single questions
                     }
+
+
+                    $.ajax(diagnosisRequest).done(function (response2) {
+                         console.log(response2); //response2 will contain new symtpm id(id_100), questions(text) and choices (yes,no,unknown) to select
+                                                  // I need to push new evidenve (id and choice_id) into responseData object
+                    })
+
+
 */
-
-$(document).ready(function () {
-
-
-/*
-          // diagnosis respose
-          $.ajax(diagnosisRequest).done(function (response) {
-               console.log(response);
-
-});
-*/
-
-
-     });
-
-})

@@ -15,12 +15,13 @@ html, body {
     font-size: 16px;
 }
 
-#info_submit {
-    margin: 10px;
+#info_submit,#present,#absent,#unknown {
+    margin: 3px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
+
 
 
 /* ---- Text----- */
@@ -64,6 +65,20 @@ label {
     padding-top: 0.2em;
     font-weight: bold;
 }
+
+/* ---- Condition Table----- */
+
+table {
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table, td, th {
+    border: 1px solid black;
+    padding: 10px;
+}
+
 
 
 /* ---- Accordian----- */
