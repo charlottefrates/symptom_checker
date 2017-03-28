@@ -86,5 +86,6 @@ $(document).ready(function () {
           $('.container').removeClass('hidden');
           $('#introduction').addClass('hidden');
           $('.html').addClass('background');
+          $('#sidebar').removeClass('hidden');
      })
 });

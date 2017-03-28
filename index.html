@@ -11,6 +11,12 @@
      <body>
           <header>
           </header>
+          <!-- Main Page Side Bar Menu ------->
+          <input type="checkbox" id="sidebartoggler" name="" value="" />
+
+          <div class="page-wrap">
+
+          <label id="sidebar" for="sidebartoggler" class="toggle hidden">☰</label>
           <!-- Page info and entrance ------->
           <div id="introduction" class="">
                <img src="images/symptom_checker.jpg" style='width:100%;'alt="checker">
@@ -19,8 +25,8 @@
                </div>
                <button id="enter" type="button" name="Enter"> Enter</button>
           </div>
-
-          <div class="container hidden">
+          <!-- Main Page Content ------->
+          <div class="container hidden page-content">
                  <div class="accordian">
                       <ul>
                            <!-- ACCORDIAN #1 ------->
@@ -128,6 +134,15 @@
                      </ul> <!-- End ul -->
                  </div> <!-- End Accordian -->
           </div> <!-- End Container -->
+
+          <div class="sidebar">
+    <ul>
+      <li>About</li>
+      <li>Symptoms A-Z</li>
+      <li>Conditions List</li>
+      <li>Infermedica API</li>
+      <li>Contact Us</li>
+    </ul>
 
           <!-- link to jquery -->
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
