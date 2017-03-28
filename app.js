@@ -80,3 +80,11 @@ var diagnosisRequest = {
 
 
 */
+
+$(document).ready(function () {
+     $('#enter').on('click',function(){
+          $('.container').removeClass('hidden');
+          $('#introduction').addClass('hidden');
+          $('.html').addClass('background');
+     })
+});

@@ -1,8 +1,16 @@
 /* ---- Main Content----- */
 
-html, body {
+body {
     margin: 0;
-    background: #95a5a6;
+
+}
+
+.background {
+     background-image:url("images/background3.jpg");
+     background-size: cover;
+     opacity: 0.9;
+     margin: 0;
+
 }
 
 .container {
@@ -15,6 +23,19 @@ html, body {
     font-size: 16px;
 }
 
+#enter{
+     letter-spacing: 0.3rem;
+     font-size: 1.5rem;
+     text-transform: uppercase;
+     color: white;
+     margin-left: 1rem;
+     padding: 1rem 1rem 1rem 1rem;
+     background-color: #3399FF;
+     border: 1px black;
+     border-radius: 5px;
+     cursor: pointer;
+}
+
 #info_submit,#present,#absent,#unknown {
     margin: 3px;
     border: none;
@@ -22,6 +43,17 @@ html, body {
     cursor: pointer;
 }
 
+#introduction{
+     text-align: center;
+}
+
+.intro_text{
+     font-size: 20px;
+}
+
+.hidden {
+	display: none;
+}
 
 
 /* ---- Text----- */
