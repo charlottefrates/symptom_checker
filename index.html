@@ -21,7 +21,7 @@
           <div id="introduction" class="">
                <img src="images/symptom_checker.jpg" style='width:100%;'alt="checker">
                <div class="intro_text">
-                    <h1>Welcome to symptom checker,<br> an online tool that helps recognize symptoms and identify the care that you may need.</h1>
+                    <h1>Welcome to Symptom Checker,<br> an online tool that helps recognize symptoms and identify the care that you may need.</h1>
                </div>
                <button id="enter" type="button" name="Enter"> Enter</button>
           </div>
@@ -32,6 +32,11 @@
                            <!-- ACCORDIAN #1 ------->
                            <li><input type="checkbox" checked=""><i></i>
                                 <h3>Patient Information and Symptoms</h3>
+                                <div class="artlist">
+                                    <div id="section_explanation"class="artlist_content"style="font-style:italic;font-size: 12pt;">
+                                         Please fill out the forms below:
+                                    </div>
+                                </div>
                                 <div class="artlist">
                                      <div class="artlist_content">
                                           <form>
@@ -66,7 +71,7 @@
                           <li><input type="checkbox" checked=""><i></i>
                                <h3>Diagnosis Questions</h3>
                                <div class="artlist">
-                                   <div class="artlist_content"style="font-style:italic;font-size: 12pt;">
+                                   <div id="section_explanation"class="artlist_content"style="font-style:italic;font-size: 12pt;">
                                         This section involves a question and answer portion.
                                         Answering additional questions could either help to confirm conditions, by increasing its probability and ruling out other, more serious health problems.
                                    </div>
@@ -113,6 +118,10 @@
                           <li><input type="checkbox" checked=""><i></i>
                             <h3>Conditions</h3>
                             <div class="artlist">
+                               <div id="section_explanation"class="artlist_content"style="font-style:italic;font-size: 12pt;">
+                                     As more questions are answered, the following conditions of your symptoms are listed here.
+                            </div>
+                            <div class="artlist">
                                    <div class="artlist_content">
                                         <table>
                                              <tr>
@@ -135,14 +144,26 @@
                  </div> <!-- End Accordian -->
           </div> <!-- End Container -->
 
+          <!-- Main Page Content ------->
           <div class="sidebar">
-    <ul>
-      <li>About</li>
-      <li>Symptoms A-Z</li>
-      <li>Conditions List</li>
-      <li>Infermedica API</li>
-      <li>Contact Us</li>
-    </ul>
+              <ul>
+                <li id="about_pop">About</li>
+                <li>Symptoms A-Z</li>
+                <li>Conditions List</li>
+                <li><a class="link"href="http://www.infermedica.com/" target="_blank">Infermedica API</a></li>
+                <li><a class="link"href="mailto:charlottefrates@gmail.com?subject=Symptom Checker App">Contact Us</a></li>
+              </ul>
+          <!-- Modal Element------->
+
+          <div id="ModalBgWrap" class="modal-wrap">
+               <div class="modal-bg mix"></div>
+          </div>
+
+          <div id="ModalContentWrap" class="modal-wrap">
+            <div class="modal-content mix">
+              <div class="modal-close">✖</div>
+            </div>
+          </div>
 
           <!-- link to jquery -->
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

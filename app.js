@@ -81,11 +81,17 @@ var diagnosisRequest = {
 
 */
 
+
+
+
+//modal POP UP
+
+
 $(document).ready(function () {
      $('#enter').on('click',function(){
           $('.container').removeClass('hidden');
           $('#introduction').addClass('hidden');
           $('.html').addClass('background');
           $('#sidebar').removeClass('hidden');
-     })
+     });
 });
