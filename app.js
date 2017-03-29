@@ -1,9 +1,10 @@
+//global variables
 var name, sex, age, text;
 
+//variable that holds symptom text to be sent to API for first symptom analysis
 var data = { };
-var firstResData;
 
-
+//first API request that sends symptom text
 var firstRequest    = {
                          "async": true,
                          "crossDomain": true,
@@ -18,6 +19,9 @@ var firstRequest    = {
                          "processData": false,
                          "data":JSON.stringify(data)
                     }
+
+//variable that holds first response from API after user submits forms
+var firstResData;
 
 //responseData will be used to POST next request to start generating questions to narrow down conditions
 //responseData.evience will changed as each question gets answered then gets sends back to server to list possible conditions
@@ -49,12 +53,14 @@ var diagnosisRequest = {
 //main event handler
 $('#info_submit').on('click',function(){
                          event.preventDefault();
-                         $('#secondAccordian').removeAttr('checked');
+
+                         // updates global variables based on user input
                           name  = $('#patient_name').val();
                           sex   = $("input[name=gender]:checked").val();
                           age   = $('#patient_age').val();
                           text  = $('#symptoms').val();
 
+                          // requires users to fill in form fields_highlights area and pushes an alert
                           if ((age === null) || (age === undefined) || (age.length === 0 )){
                                $('#patient_age').addClass('highlight');
                                alert('Please let me know how old you are.');
@@ -72,17 +78,14 @@ $('#info_submit').on('click',function(){
                                return false;
                          };
 
-                         // Does !text work the same way?
+                         // Does !text and !age work the same way?
 
 
+                         // updates text variable and stringify for first request POST
+                         data.text = text;
+                         //updates data variable into JSON string
+                         firstRequest.data = JSON.stringify(data);
 
-                          data.text = text;
-                          firstRequest.data = JSON.stringify(data);
-
-                         //03.29.17 didnt work either
-                         //var obj = { };
-                         //obj.text = text;
-                         //data = JSON.stringify({obj:obj});
 
                          //user entry information log
                          console.log('The patient\'s name is '+ name + '.');
@@ -92,23 +95,25 @@ $('#info_submit').on('click',function(){
 
                          // first request response
                          $.ajax(firstRequest).done(function (response) {
-                           firstResData = eval(response); //JSON.parse() or eval
-                           console.log('First Request Response:'+ firstResData);
-                           console.log('This will get sent do get diagnosis questions' + responseData);
-                           $('#main_symptom').text(firstResData.mentions[0].name);
+                              // opens first accordian on enter
+                              $('#secondAccordian').removeAttr('checked');
+                              firstResData = eval(response); //JSON.parse() or eval
+                              console.log('First Request Response (variable name:firstResData):'+ firstResData);
+                              console.log('This will get sent do get diagnosis questions (variable name: responseData)' + responseData);
+                              $('#main_symptom').text(firstResData.mentions[0].name);
 
-                           //update responseData with new response
-                           responseData.evidence.id = firstResData.mentions[0].id;
-                           responseData.evidence.id = firstResData.mentions[0].choice_id;
+                              responseData.evidence.id = firstResData.mentions[0].id;
+                              responseData.evidence.choice_id = firstResData.mentions[0].choice_id;
+                         });
 
-
-                      });
 
                          // second request
-                        $.ajax(diagnosisRequest).done(function (response2) {
+                        /*$.ajax(diagnosisRequest).done(function (response2) {
+                        // opens third accordian on enter
+                        $('#thirdAccordian').removeAttr('checked');
                            console.log(response2); //response2 will contain new symtpm id(id_100), questions(text) and choices (yes,no,unknown) to select
                                                   // i need to render questions into DOM
-                      })
+                      })*/
 
 });
 
