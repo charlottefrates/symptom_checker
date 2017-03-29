@@ -55,6 +55,27 @@ $('#info_submit').on('click',function(){
                           age   = $('#patient_age').val();
                           text  = $('#symptoms').val();
 
+                          if ((age === null) || (age === undefined) || (age.length === 0 )){
+                               $('#patient_age').addClass('highlight');
+                               alert('Please let me know how old you are.');
+                               return false;
+                         };
+
+                         if (!sex){
+                              alert('Please select a gender.');
+                              return false;
+                                       };
+
+                          if ((text === null) || (text === undefined) || (text.length === 0 )){
+                               $('#symptoms').addClass('highlight');
+                               alert('Please tell me about your symptoms.');
+                               return false;
+                         };
+
+                         // Does !text work the same way?
+
+
+
                           data.text = text;
                           firstRequest.data = JSON.stringify(data);
 
@@ -77,6 +98,9 @@ $('#info_submit').on('click',function(){
                            console.log('First Request Response:'+ firstResData);
                            console.log('This will get sent do get diagnosis questions' + responseData);
                            $('#main_symptom').text(firstResData.mentions[0].name);
+
+
+
                       });
 
                          // second request
@@ -88,8 +112,9 @@ $('#info_submit').on('click',function(){
 });
 
 
-
-
+$('.required').keydown(function(){
+     $('.required').removeClass('highlight');
+});
 
 
 

@@ -60,6 +60,10 @@ body {
 	display: none;
 }
 
+.highlight{
+     border-color: red;
+}
+
 
 /* ---- Text----- */
 
