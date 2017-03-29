@@ -1,7 +1,8 @@
 /* ---- Main Content----- */
 
 body {
-    margin: 0;
+      margin: 0;
+      margin-bottom: 50px;
 
 }
 
@@ -306,7 +307,7 @@ margin-left: -9%;
     left: 200px; }
 
   #sidebartoggler:checked + .page-wrap .page-content {
-    padding-left: 180px; }
+    padding-left: 20px; }
 
 
 .link{

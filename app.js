@@ -1,7 +1,7 @@
 var name, sex, age, text;
 
 var data = { };
-
+var firstResData;
 
 
 var firstRequest    = {
@@ -16,46 +16,20 @@ var firstRequest    = {
                               "cache-control": "no-cache",
                               },
                          "processData": false,
-                         "data":"{\n\t\"text\": \"My head hurts\"\n}", //JSON.stringify(data) 03.27.2017 RITIKA TO CHECK ON WHY THIS ISNT WORKING
+                         "data":JSON.stringify(data)
                     }
-
-
-
-//main event handler
-$('#info_submit').on('click',function(){
-                         event.preventDefault();
-                          name  = $('#patient_name').val();
-                          sex   = $("input[name=gender]:checked").val();
-                          age   = $('#patient_age').val();
-                          text  = $('#symptoms').val();
-
-                         data.text = text;
-
-                         //user entry information log
-                         console.log('The patient\'s name is '+ name + '.');
-                         console.log('The patient is a '+ sex + '.');
-                         console.log('The patient is '+ age + ' years old.');
-                         console.log('The patient\'s symptom is as follows: '+ text);
-
-                         // first request response
-                         $.ajax(firstRequest).done(function (response) {
-                           console.log('First Request Response:'+ response);
-                           $('#main_symptom').text(response); // ASK RITIKA HOW TO STORE RESPONSE INTO VARIABLE AND RENDER ONLY CERTAIN VALUES INTO DOM
-                         })
-});
 
 //responseData will be used to POST next request to start generating questions to narrow down conditions
 //responseData.evience will changed as each question gets answered then gets sends back to server to list possible conditions
 var responseData = {
-     "sex":sex, // user generated data
-     "age":age, // user generated data
-     "evidence":[{
-          //"id":"" this portion is what is includef in first response
-          //"choice_id":"" this portion is what is includef in first response
-     }]
-}
+                         "sex":sex, // user generated data
+                         "age":age, // user generated data
+                         "evidence":[{
+                              "id": "",
+                              "choice_id":"",
+                         }]
+                    }
 
-/*
 var diagnosisRequest = {
                          "async": true,
                          "crossDomain": true,
@@ -66,25 +40,57 @@ var diagnosisRequest = {
                               "app-key": "f4ef314cbba85fb58830593457daa783",
                               "content-type": "application/json",
                               "cache-control": "no-cache",
-                              },
+                                   },
                          "processData": false,
-                         "data": "{\n  \"sex\": \"female\",\n  \"age\": 30,\n  \"evidence\": [\n    {\n      \"id\": \"s_21\",\n  \"choice_id\": \"present\"\n    }\n  ]\n}", //responseData
+                         "data": JSON.stringify(responseData),
                          "extras": {"ignore_groups":true} //ignores group questions and ONLY returns single questions
                     }
 
+//main event handler
+$('#info_submit').on('click',function(){
+                         event.preventDefault();
+                         $('#secondAccordian').removeAttr('checked');
+                          name  = $('#patient_name').val();
+                          sex   = $("input[name=gender]:checked").val();
+                          age   = $('#patient_age').val();
+                          text  = $('#symptoms').val();
 
-                    $.ajax(diagnosisRequest).done(function (response2) {
-                         console.log(response2); //response2 will contain new symtpm id(id_100), questions(text) and choices (yes,no,unknown) to select
-                                                  // I need to push new evidenve (id and choice_id) into responseData object
-                    })
+                          data.text = text;
+                          firstRequest.data = JSON.stringify(data);
+
+                         //03.29.17 didnt work either
+                         //var obj = { };
+                         //obj.text = text;
+                         //data = JSON.stringify({obj:obj});
+
+                         //user entry information log
+                         console.log('The patient\'s name is '+ name + '.');
+                         console.log('The patient is a '+ sex + '.');
+                         console.log('The patient is '+ age + ' years old.');
+                         console.log('The patient\'s symptom is as follows: '+ text);
+
+                         // first request response
+                         $.ajax(firstRequest).done(function (response) {
+                           firstResData = eval(response); //JSON.parse() or eval
+                           responseData.evidence.id = firstResData.mentions[0].id;
+                           responseData.evidence.id = firstResData.mentions[0].choice_id;
+                           console.log('First Request Response:'+ firstResData);
+                           console.log('This will get sent do get diagnosis questions' + responseData);
+                           $('#main_symptom').text(firstResData.mentions[0].name);
+                      });
+
+                         // second request
+                        $.ajax(diagnosisRequest).done(function (response2) {
+                           console.log(response2); //response2 will contain new symtpm id(id_100), questions(text) and choices (yes,no,unknown) to select
+                                                  // i need to render questions into DOM
+                      })
+
+});
 
 
-*/
 
 
 
-
-//modal POP UP
 
 
 $(document).ready(function () {
