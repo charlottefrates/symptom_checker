@@ -22,8 +22,8 @@ var firstRequest    = {
 //responseData will be used to POST next request to start generating questions to narrow down conditions
 //responseData.evience will changed as each question gets answered then gets sends back to server to list possible conditions
 var responseData = {
-                         "sex":sex, // user generated data
-                         "age":age, // user generated data
+                         "sex":sex, // user generated data showing up UNDEFINED
+                         "age":age, // user generated data showing up UNDEFINED
                          "evidence":[{
                               "id": "",
                               "choice_id":"",
@@ -93,12 +93,13 @@ $('#info_submit').on('click',function(){
                          // first request response
                          $.ajax(firstRequest).done(function (response) {
                            firstResData = eval(response); //JSON.parse() or eval
-                           responseData.evidence.id = firstResData.mentions[0].id;
-                           responseData.evidence.id = firstResData.mentions[0].choice_id;
                            console.log('First Request Response:'+ firstResData);
                            console.log('This will get sent do get diagnosis questions' + responseData);
                            $('#main_symptom').text(firstResData.mentions[0].name);
 
+                           //update responseData with new response
+                           responseData.evidence.id = firstResData.mentions[0].id;
+                           responseData.evidence.id = firstResData.mentions[0].choice_id;
 
 
                       });
