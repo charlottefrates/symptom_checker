@@ -46,7 +46,7 @@ var diagnosisRequest = {
                               "cache-control": "no-cache",
                                    },
                          "processData": false,
-                         "data": JSON.stringify(responseData),
+                         "data": JSON.stringify (responseData),
                          "extras": {"ignore_groups":true} //ignores group questions and ONLY returns single questions
                     }
 
@@ -98,26 +98,50 @@ $('#info_submit').on('click',function(){
                               // opens first accordian on enter
                               $('#secondAccordian').removeAttr('checked');
                               firstResData = eval(response); //JSON.parse() or eval
-                              console.log('First Request Response (variable name:firstResData):'+ firstResData);
-                              console.log('This will get sent do get diagnosis questions (variable name: responseData)' + responseData);
-                              $('#main_symptom').text(firstResData.mentions[0].name);
 
-                              responseData.evidence.id = firstResData.mentions[0].id;
-                              responseData.evidence.choice_id = firstResData.mentions[0].choice_id;
+                              if(firstResData.mentions.length === 0){
+                                   alert('Your symtom was not found. Please seek professional care.');
+                              }
+
+                              if(firstResData.mentions.length != 0){
+                                   console.log('First Request Response (variable name:firstResData):'+ firstResData);
+                                   console.log('This will get sent do get diagnosis questions (variable name: responseData)' + responseData);
+                                   $('#main_symptom').text(firstResData.mentions[0].name);
+
+                                   responseData.sex = sex;
+                                   responseData.age = age;
+                              	responseData.evidence.id = firstResData.mentions[0].id;
+                              	responseData.evidence.choice_id = firstResData.mentions[0].choice_id;
+
+                            };
+
+
+                         });
+
+                      });
+
+$('#start_questions').on('click',function (e) {
+
+                         diagnosisRequest.data = JSON.stringify(responseData);// 03.30.17 it is not creating a JSON object so error
+
+                         if(diagnosisRequest.data.length === 0){
+                              alert('A symptom must be recorded before getting properly diagnosed.')
+                              return false;
+                         } // Is this the right approach?
+
+                         $.ajax(diagnosisRequest).done(function (response2) {
+                                   // opens third accordian on enter
+                                   $('#thirdAccordian').removeAttr('checked');
+                                   console.log(response2); //response2 will contain new symtpm id(id_100), questions(text) and choices (yes,no,unknown) to select
+                                                                             // i need to render questions into DOM
                          });
 
 
-                         // second request
-                        /*$.ajax(diagnosisRequest).done(function (response2) {
-                        // opens third accordian on enter
-                        $('#thirdAccordian').removeAttr('checked');
-                           console.log(response2); //response2 will contain new symtpm id(id_100), questions(text) and choices (yes,no,unknown) to select
-                                                  // i need to render questions into DOM
-                      })*/
 
-});
+                      });
 
 
+//removes red highlight on forms that get submitted
 $('.required').keydown(function(){
      $('.required').removeClass('highlight');
 });
