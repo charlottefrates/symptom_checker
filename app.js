@@ -132,6 +132,7 @@ $('#start_questions').on('click',function (e) {
                          $.ajax(diagnosisRequest).done(function (response2) {
                                    // opens third accordian on enter
                                    $('#thirdAccordian').removeAttr('checked');
+                                   $('#firstAccordian').removeAttr('checked');
                                    console.log(response2); //response2 will contain new symtpm id(id_100), questions(text) and choices (yes,no,unknown) to select
                                                                              // i need to render questions into DOM
                          });
