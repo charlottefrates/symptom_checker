@@ -46,6 +46,7 @@ body {
 
 #introduction{
      text-align: center;
+     margin-bottom: 50px;
 }
 
 #section_explanation{
@@ -69,7 +70,24 @@ body {
      padding: 20px;
 }
 
+.information{
+         text-align: center;
+}
 
+.powered{
+     margin-top: 50px;
+         text-align: center;
+}
+
+.icon{
+     margin: 50px;
+     height: 100px;
+     width: 100px;
+}
+
+.infermedica_icon{
+         height: 50px;
+}
 /* ---- Text----- */
 
 .bold{
