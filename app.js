@@ -65,6 +65,7 @@ function getQuestion(){
 };
 
 //function to capture selected answer and update responseData
+// NOT WORKING!!!!! 03.31.2017
 function  selectAnswer(){
      var answer = $("input[type='radio']:checked").val();
      if (!answer){
@@ -94,6 +95,25 @@ function  selectAnswer(){
 
      };
 };
+
+//function to dynamically render conditions onto HTML table
+
+function listCondition(){
+     var html = "";
+     $.each(function () {
+          // Append results tr
+          html = html + "<tr>"
+               + "<tb>"
+               + secondResData.conditions.name
+               + "</tb>"
+               + "<td>"
+               +  secondResData.conditions.probability
+               + "</td>"
+               + "</tr>";
+     });
+     $("#condition_table").html(html);
+
+}
 
 
 //main event handlers
@@ -191,7 +211,10 @@ $('#start_questions').on('click',function () {
 //submits an answer and updates diagnosisRequest for next question
 $('#submit').on('click',function(){
 
+                         listCondition();
+
                          selectAnswer();
+
                          console.log( 'By submitting an answer, the responseData variable is now this: ' + responseData)
                          //updates new data with additional array evidence
                          diagnosisRequest.data = JSON.stringify(responseData);
