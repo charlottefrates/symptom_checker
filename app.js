@@ -26,8 +26,8 @@ var firstResData;
 //responseData will be used to POST next request to start generating questions to narrow down conditions
 //responseData.evience will changed as each question gets answered then gets sends back to server to list possible conditions
 var responseData = {
-                         "sex":sex, // user generated data showing up UNDEFINED
-                         "age":age, // user generated data showing up UNDEFINED
+                         "sex":"", // user generated data showing up UNDEFINED
+                         "age":"" ,// user generated data showing up UNDEFINED
                          "evidence":[{
                               "id": "",
                               "choice_id":"",
@@ -46,7 +46,7 @@ var diagnosisRequest = {
                               "cache-control": "no-cache",
                                    },
                          "processData": false,
-                         "data": JSON.stringify (responseData),
+                         "data": JSON.stringify(responseData),
                          "extras": {"ignore_groups":true} //ignores group questions and ONLY returns single questions
                     }
 
@@ -108,10 +108,13 @@ $('#info_submit').on('click',function(){
                                    console.log('This will get sent do get diagnosis questions (variable name: responseData)' + responseData);
                                    $('#main_symptom').text(firstResData.mentions[0].name);
 
-                                   responseData.sex = sex;
-                                   responseData.age = age;
-                              	responseData.evidence.id = firstResData.mentions[0].id;
-                              	responseData.evidence.choice_id = firstResData.mentions[0].choice_id;
+                                   responseData.sex = JSON.stringify(sex);
+                                   responseData.age = JSON.stringify(age);
+                              	responseData.evidence[0].id = JSON.stringify(firstResData.mentions[0].id);
+                              	responseData.evidence[0].choice_id = JSON.stringify(firstResData.mentions[0].choice_id);
+
+                                   //updates next request's data variable into JSON string
+                                   diagnosisRequest.data = JSON.stringify(responseData);
 
                             };
 
@@ -122,7 +125,6 @@ $('#info_submit').on('click',function(){
 
 $('#start_questions').on('click',function (e) {
 
-                         diagnosisRequest.data = JSON.stringify(responseData);// 03.30.17 it is not creating a JSON object so error
 
                          if(diagnosisRequest.data.length === 0){
                               alert('A symptom must be recorded before getting properly diagnosed.')
@@ -162,9 +164,6 @@ $(document).ready(function () {
 
      // Get the modal
      var modal = document.getElementById('myModal');
-
-     // Get the button that opens the modal
-     var btn = document.getElementById("myBtn");
 
      // Get the <span> element that closes the modal
      var span = document.getElementsByClassName("close")[0];
