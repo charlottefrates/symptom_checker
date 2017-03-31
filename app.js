@@ -18,22 +18,24 @@ var firstRequest    = {
                               },
                          "processData": false,
                          "data":JSON.stringify(data)
-                    }
+                    };
 
 //variable that holds first response from API after user submits forms
 var firstResData;
 
 //responseData will be used to POST next request to start generating questions to narrow down conditions
-//responseData.evience will changed as each question gets answered then gets sends back to server to list possible conditions
+//responseData.evience will changed as each diagnosis question gets answered
+// responseData will be sent to API each time more evidence is added to get proper diagnosis
 var responseData = {
-                         "sex":"", // user generated data showing up UNDEFINED
-                         "age":"" ,// user generated data showing up UNDEFINED
+                         "sex":"",
+                         "age":"" ,
                          "evidence":[{
                               "id": "",
                               "choice_id":"",
                          }]
-                    }
+                    };
 
+//Second API reqeust that triggers diagnosis questions
 var diagnosisRequest = {
                          "async": true,
                          "crossDomain": true,
@@ -48,13 +50,58 @@ var diagnosisRequest = {
                          "processData": false,
                          "data": JSON.stringify(responseData),
                          "extras": {"ignore_groups":true} //ignores group questions and ONLY returns single questions
-                    }
+                    };
 
-//main event handler
+//variable that holds second response from API which has disgnosis questions to be answered
+var secondResData;
+
+
+//function to dynamically render questions and answers based on secondResData
+function getQuestion(){
+     $('#renderedQuestion').text(secondResData.question.text);
+     $('#present').text(secondResData.question.items[0].choices[0].label);
+     $('#absent').text(secondResData.question.items[0].choices[1].label);
+     $('#unknown').text(secondResData.question.items[0].choices[2].label);
+};
+
+//function to capture selected answer and update responseData
+function  selectAnswer(){
+     var answer = $("input[type='radio']:checked").val();
+     if (!answer){
+          alert('Please select an answer');
+          return false
+                   };
+     if(answer=== "Yes"){
+          responseData.evidence.push({
+               "id": secondResData.question.items[0].id,
+               "choice_id":secondResData.question.items[0].choices[0].id,
+          });
+          console.log('Your responseData variable has been updated to: '+ responseData);
+     };
+     if(answer=== "No"){
+          responseData.evidence.push({
+               "id": secondResData.question.items[1].id,
+               "choice_id":secondResData.question.items[1].choices[1].id,
+          });
+          console.log('Your responseData variable has been updated to: '+ responseData);
+
+     };
+     if(answer=== "Don't know"){
+          responseData.evidence.push({
+               "id": secondResData.question.items[2].id,
+               "choice_id":secondResData.question.items[2].choices[2].id,
+          });
+
+     };
+};
+
+
+//main event handlers
 $('#info_submit').on('click',function(){
                          event.preventDefault();
 
                          // updates global variables based on user input
+                         //assignment
                           name  = $('#patient_name').val();
                           sex   = $("input[name=gender]:checked").val();
                           age   = $('#patient_age').val();
@@ -74,7 +121,7 @@ $('#info_submit').on('click',function(){
 
                           if ((text === null) || (text === undefined) || (text.length === 0 )){
                                $('#symptoms').addClass('highlight');
-                               alert('Please tell me about your symptoms.');
+                               alert('Please tell me about your main symptom.');
                                return false;
                          };
 
@@ -100,30 +147,30 @@ $('#info_submit').on('click',function(){
                               firstResData = eval(response); //JSON.parse() or eval
 
                               if(firstResData.mentions.length === 0){
-                                   alert('Your symtom was not found. Please seek professional care.');
+                                   alert('Your symptom was not found. Please seek professional care.');
                               }
 
-                              if(firstResData.mentions.length != 0){
+                              else{
                                    console.log('First Request Response (variable name:firstResData):'+ firstResData);
                                    console.log('This will get sent do get diagnosis questions (variable name: responseData)' + responseData);
                                    $('#main_symptom').text(firstResData.mentions[0].name);
 
-                                   responseData.sex = JSON.stringify(sex);
-                                   responseData.age = JSON.stringify(age);
-                              	responseData.evidence[0].id = JSON.stringify(firstResData.mentions[0].id);
-                              	responseData.evidence[0].choice_id = JSON.stringify(firstResData.mentions[0].choice_id);
+                                   responseData.sex = sex;
+                                   responseData.age = age;
+                              	responseData.evidence[0].id = firstResData.mentions[0].id;
+                              	responseData.evidence[0].choice_id = firstResData.mentions[0].choice_id;
 
                                    //updates next request's data variable into JSON string
                                    diagnosisRequest.data = JSON.stringify(responseData);
 
-                            };
+                            }
 
 
                          });
 
                       });
 
-$('#start_questions').on('click',function (e) {
+$('#start_questions').on('click',function () {
 
 
                          if(diagnosisRequest.data.length === 0){
@@ -135,13 +182,34 @@ $('#start_questions').on('click',function (e) {
                                    // opens third accordian on enter
                                    $('#thirdAccordian').removeAttr('checked');
                                    $('#firstAccordian').removeAttr('checked');
-                                   console.log(response2); //response2 will contain new symtpm id(id_100), questions(text) and choices (yes,no,unknown) to select
-                                                                             // i need to render questions into DOM
+                                   secondResData = eval(response2);
+                                   console.log(secondResData);
+                                   getQuestion();
                          });
-
-
-
                       });
+
+//submits an answer and updates diagnosisRequest for next question
+$('#submit').on('click',function(){
+
+                         selectAnswer();
+                         console.log( 'By submitting an answer, the responseData variable is now this: ' + responseData)
+                         //updates new data with additional array evidence
+                         diagnosisRequest.data = JSON.stringify(responseData);
+
+
+});
+
+
+$('#next').on('click',function(){
+                         $('input[type=radio]').prop('checked',false);//clears previosly selected answer
+                         $.ajax(diagnosisRequest).done(function (response3) {
+                                   console.log(response3);
+                                   secondResData = eval(response3);
+                                   console.log(secondResData);
+                                   getQuestion();
+                              });
+
+});
 
 
 //removes red highlight on forms that get submitted
@@ -149,11 +217,7 @@ $('.required').keydown(function(){
      $('.required').removeClass('highlight');
 });
 
-
-
-
-
-
+//Load on page
 $(document).ready(function () {
      $('#enter').on('click',function(){
           $('.container').removeClass('hidden');

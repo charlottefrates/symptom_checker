@@ -11,13 +11,15 @@
      <body>
           <header>
           </header>
+
           <!-- Main Page Side Bar Menu ------->
           <input type="checkbox" id="sidebartoggler" name="" value="" />
 
           <div class="page-wrap">
 
           <label id="sidebar" for="sidebartoggler" class="toggle hidden">☰</label>
-          <!-- Landing Page *ADD MORE INFO HERE LATER* ------->
+
+          <!-- Landing Page------->
           <div id="introduction" class="">
                <div class="intro_text">
                     <div class="entrance">
@@ -60,7 +62,7 @@
                       <ul>
                            <!-- ACCORDIAN #1 ------->
                            <li><input id="firstAccordian"type="checkbox" ><i></i>
-                                <h3>Patient Information and Symptoms</h3>
+                                <h3>Patient Information and Symptom Analysis</h3>
                                 <div class="artlist">
                                     <div id="section_explanation"class="artlist_content"style="font-style:italic;font-size: 12pt;">
                                          Please fill out the forms below:
@@ -134,32 +136,36 @@
                               </div>
 
                               <div class="artlist">
+                                   <!-- Question here -------->
                                    <div class="question"class="artlist_content">
-                                        This is my question
+                                        <p id="renderedQuestion">This is my question</p>
+                                   <!-- Answers here -------->
+                                        <div id="choide_id">
+                                             <input  type="radio" name="yes">
+                                                  <label id="present">Choice 1</label>
+                                             <input  type="radio" name="no">
+                                                  <label id="absent"> Choice 2</label>
+                                             <input  type="radio" name="unknown">
+                                                  <label id="unknown"> Choice 3</label>
+                                        </div>
+                                   </div>
+                                   <div class="artlist_content">
+                                        <button id="submit" type="button" name="next">Submit Answer</button>
+                                        <button id="next" type="button" name="next">Next Question</button>
                                    </div>
                               </div>
-
-                              <!-- Answers here -------->
-                              <div class="artlist">
-                                   <div id="choide_id"class="artlist_content">
-                                        <button id="present" type="button" name="yes" style="display: inline-block;">Yes</button>
-                                        <button id="absent" type="button" name="no" style="display: inline-block;">No</button>
-                                        <button id="unknown" type="button" name="unknown" style="display: inline-block;">I don't know</button>
-                                        <button id="next" type="button" name="next" style="display: inline-block;">Next Question</button>
-                                   </div>
-                              </div>
-
 
                           </li>
 
                           <!-- ACCORDIAN #3 ------->
                           <li><input id="thirdAccordian"type="checkbox" checked=""><i></i>
-                            <h3>Conditions</h3>
-                            <div class="artlist">
-                               <div id="section_explanation"class="artlist_content"style="font-style:italic;font-size: 12pt;">
-                                     As more questions are answered, the following conditions of your symptoms are listed here.
-                            </div>
-                            <div class="artlist">
+                               <h3>Conditions</h3>
+                               <div class="artlist">
+                                   <div id="section_explanation"class="artlist_content"style="font-style:italic;font-size: 12pt;">
+                                          As more questions are answered, the following conditions of your symptoms are listed here.
+                                   </div>
+                              </div>
+                              <div class="artlist">
                                    <div class="artlist_content">
                                         <table>
                                              <tr>
@@ -176,36 +182,36 @@
                                              </tr>
                                         </table>
                                    </div>
-                            </div>
+                              </div>
                           </li>
                      </ul> <!-- End ul -->
-                 </div> <!-- End Accordian -->
-          </div> <!-- End Container -->
 
-          <!-- Main Page Content ------->
+                 </div><!-- End Accordian -->
+          </div><!-- End Container -->
+
+          <!-- Main Page Sidebar Options ------->
           <div class="sidebar">
-              <ul>
-                <li id="about">About</li>
-                <li><a class="link"href="http://www.infermedica.com/" target="_blank">Infermedica API</a></li>
-                <li><a class="link"href="mailto:charlottefrates@gmail.com?subject=Symptom Checker App">Contact Us</a></li>
-              </ul>
+                   <ul>
+                     <li id="about">About</li>
+                     <li><a class="link"href="http://www.infermedica.com/" target="_blank">Infermedica API</a></li>
+                     <li><a class="link"href="mailto:charlottefrates@gmail.com?subject=Symptom Checker App">Contact Us</a></li>
+                   </ul>
+          </div>
 
-              <!-- The Modal -->
-              <div id="myModal" class="modal">
-
+          <!-- The Modal Pop-up -->
+          <div id="myModal" class="modal">
                    <!-- Modal content -->
                    <div class="modal-content">
                         <span class="close">&times;</span>
                         <p>
                              <span class="bold">Symptom Checker is: </span> <br><br>
-                             1) intended for informational and educational purposes only.<br><br>
+                             1) Intended for informational and educational purposes only.<br><br>
                              2) It is not a substitute for professional medical advice, diagnosis or treatment.<br><br>
                              NEVER IGNORE PROFESSIONAL MEDICAL ADVICE IN SEEKING TREATMENT.<br><br>
                               If you think you may have a medical emergency,<br><span class="color">immediately call your doctor or dial 911.</span><br>
                         </p>
                    </div>
-
-             </div>
+          </div>
           <!-- link to jquery -->
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
           <!-- link to your app.js -->
