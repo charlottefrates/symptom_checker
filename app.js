@@ -102,13 +102,13 @@ function listCondition(){
      var condition = secondResData.conditions;
      var html = "";
      $.each(condition,function () {
-          // Append results tr
-          html = html + "<ul>"
-               + "<li>"
+          // Append results li to ul
+          html = html + "<ul> "
+               + "<li> <p>"
                + secondResData.conditions.name
-               + "</li>"
+               + "</p>"
                + "<li>"
-               +  secondResData.conditions.probability
+               +  (secondResData.conditions.probability)*100
                + "</li>"
                + "</ul>";
      });
