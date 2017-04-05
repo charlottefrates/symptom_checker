@@ -44,7 +44,7 @@ h1 {
     cursor: pointer;
 }
 
-#info_submit, #present, #absent, #unknown, #start_questions, #next, #submit {
+#info_submit, #present, #absent, #start_questions, #next, #submit {
      text-align: center;
     font-size: 10pt;
     margin: 3px;
@@ -153,6 +153,7 @@ legend {
 
 label {
     display: inline-block;
+    text-align:right;
     width: 10%;
     margin-right: 0.5em;
     padding-top: 10px;
@@ -160,16 +161,13 @@ label {
     font-weight: bold;
 }
 
-#choice1, #choice2, #choice3 {
+.select {
     text-align: center;
     display: inline-block;
-    width: 100px;
-    margin-right: 0.5em;
+    width: 15%;
     padding-top: 10px;
     padding-bottom: 10px;
-    font-weight: bold;
 }
-
 
 /* ---- Condition Table----- */
 

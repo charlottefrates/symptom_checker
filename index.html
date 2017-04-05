@@ -73,8 +73,6 @@
                                           <form>
                                                <fieldset>
                                                   <legend>General Information</legend>
-                                                  <label for="name">Name:</label>
-                                                  <input id="patient_name"type="text" placeholder=" John"><br>
 
                                                   <label for="age">Age:</label>
                                                   <input id="patient_age" class="required" type="text" placeholder="20"><br>
@@ -103,8 +101,7 @@
                                <h3>Diagnosis Questions</h3>
                                <div class="artlist">
                                    <div id="section_explanation"class="artlist_content"style="font-style:italic;font-size: 12pt;">
-                                        This section involves a question and answer portion.
-                                        Answering additional questions could either help to confirm conditions, by increasing its probability and ruling out other, more serious health problems.
+                                        Please answer as many of the following questions in order to get a more accurate diagnosis.
                                    </div>
                                </div>
 
@@ -141,14 +138,14 @@
                                         <p id="renderedQuestion">Diasnosis Question</p>
                                    <!-- Answers here -------->
                                    <div id="choice_id">
-                                        <input  type="radio" name="mcq" value="yes"> <label id="yes" > Answer 1</label>
-                                        <input  type="radio" name="mcq" value="no"> <label id="no"> Answer 1</label>
-                                        <input  type="radio" name="mcq" value="unknown"> <label id="unknown"> Answer 1</label>
+                                        <input  type="radio" name="mcq" value="yes"> <label class ="select"id="yes" > Answer 1</label>
+                                        <input  type="radio" name="mcq" value="no"> <label class ="select"id="no"> Answer 2</label>
+                                        <input  type="radio" name="mcq" value="unknown"> <label class ="select"id="unknown"> Answer 3</label>
                                    </div>
                                    </div>
                                    <div class="artlist_content">
                                         <button id="submit" type="button" name="next">Submit Answer</button>
-                                        <button id="next" type="button" name="next">Next Question</button>
+                                        <button id="next" type="button" name="next" class="hidden">Next Question</button>
                                    </div>
                               </div>
 
@@ -159,7 +156,7 @@
                                <h3>Conditions</h3>
                                <div class="artlist">
                                    <div id="section_explanation"class="artlist_content"style="font-style:italic;font-size: 12pt;">
-                                          As more questions are answered, the following conditions of your symptoms are listed here.
+                                          As questions are answered, the probabilities of one or more diagnosed condition will be displayed below.
                                    </div>
                               </div>
                               <div class="artlist">

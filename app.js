@@ -32,11 +32,11 @@ var responseData = {
                          "evidence":[{
                               "id": "",
                               "choice_id":"",
-                         }]
+                         }],
+                         "extras": {"ignore_groups":true} //ignores group questions and ONLY returns single questions
                     };
 
 //Second API reqeust that triggers diagnosis questions
-//04.04 grouped questions still showing up. Asked API server providors why extra isnt working properly
 var diagnosisRequest = {
                          "async": true,
                          "crossDomain": true,
@@ -50,7 +50,6 @@ var diagnosisRequest = {
                                    },
                          "processData": false,
                          "data": JSON.stringify(responseData),
-                         "extras": {"ignore_group":true} //ignores group questions and ONLY returns single questions
                     };
 
 //variable that holds second response from API which has disgnosis questions to be answered
@@ -220,6 +219,9 @@ $('#submit').on('click',function(){
                          //updates new data with additional array evidence
                          diagnosisRequest.data = JSON.stringify(responseData);
 
+                         $('#next').removeClass('hidden');
+                         $('#submit').addClass('hidden');
+
 
 });
 
@@ -232,6 +234,8 @@ $('#next').on('click',function(){
                                    console.log(secondResData);
                                    getQuestion();
                               });
+                         $('#submit').removeClass('hidden');
+                         $('#next').addClass('hidden');
 
 });
 
