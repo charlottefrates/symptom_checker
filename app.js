@@ -201,9 +201,10 @@ $('#start_questions').on('click',function () {
                          } // Is this the right approach?
 
                          $.ajax(diagnosisRequest).done(function (response2) {
+                                   // collapses accordian 1
+                                   $('#firstAccordian').attr('checked',true);
                                    // opens third accordian on enter
                                    $('#thirdAccordian').removeAttr('checked');
-                                   $('#firstAccordian').removeAttr('checked');
                                    secondResData = eval(response2);
                                    console.log(secondResData);
                                    getQuestion();
