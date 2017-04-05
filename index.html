@@ -138,16 +138,13 @@
                               <div class="artlist">
                                    <!-- Question here -------->
                                    <div class="question"class="artlist_content">
-                                        <p id="renderedQuestion">This is my question</p>
+                                        <p id="renderedQuestion">Diasnosis Question</p>
                                    <!-- Answers here -------->
-                                        <div id="choide_id">
-                                             <input  type="radio" name="yes">
-                                                  <label id="present">Choice 1</label>
-                                             <input  type="radio" name="no">
-                                                  <label id="absent"> Choice 2</label>
-                                             <input  type="radio" name="unknown">
-                                                  <label id="unknown"> Choice 3</label>
-                                        </div>
+                                   <div id="choice_id">
+                                        <input  type="radio" name="mcq" value="yes"> <label id="yes" > Answer 1</label>
+                                        <input  type="radio" name="mcq" value="no"> <label id="no"> Answer 1</label>
+                                        <input  type="radio" name="mcq" value="unknown"> <label id="unknown"> Answer 1</label>
+                                   </div>
                                    </div>
                                    <div class="artlist_content">
                                         <button id="submit" type="button" name="next">Submit Answer</button>
@@ -166,17 +163,8 @@
                                    </div>
                               </div>
                               <div class="artlist">
-                                   <div class="artlist_content">
-                                        <table>
-                                             <tr id="condition_table">
-                                               <th>Condition</th>
-                                               <th>Probability</th>
-                                             </tr>
-                                             <tr>
-                                               <td>Example Condition</td>
-                                               <td>90%</td>
-                                             </tr>
-                                        </table>
+                                   <div class="artlist_content" id="condition_list">
+
                                    </div>
                               </div>
                           </li>

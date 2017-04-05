@@ -36,6 +36,7 @@ var responseData = {
                     };
 
 //Second API reqeust that triggers diagnosis questions
+//04.04 grouped questions still showing up. Asked API server providors why extra isnt working properly
 var diagnosisRequest = {
                          "async": true,
                          "crossDomain": true,
@@ -49,7 +50,7 @@ var diagnosisRequest = {
                                    },
                          "processData": false,
                          "data": JSON.stringify(responseData),
-                         "extras": {"ignore_groups":true} //ignores group questions and ONLY returns single questions
+                         "extras": {"ignore_group":true} //ignores group questions and ONLY returns single questions
                     };
 
 //variable that holds second response from API which has disgnosis questions to be answered
@@ -59,59 +60,59 @@ var secondResData;
 //function to dynamically render questions and answers based on secondResData
 function getQuestion(){
      $('#renderedQuestion').text(secondResData.question.text);
-     $('#present').text(secondResData.question.items[0].choices[0].label);
-     $('#absent').text(secondResData.question.items[0].choices[1].label);
+     $('#yes').text(secondResData.question.items[0].choices[0].label);
+     $('#no').text(secondResData.question.items[0].choices[1].label);
      $('#unknown').text(secondResData.question.items[0].choices[2].label);
 };
 
 //function to capture selected answer and update responseData
-// NOT WORKING!!!!! 03.31.2017
 function  selectAnswer(){
-     var answer = $("input[type='radio']:checked").val();
+     var answer = $("input[name=mcq]:checked").val();
      if (!answer){
           alert('Please select an answer');
           return false
                    };
-     if(answer=== "Yes"){
+     if(answer=== "yes"){
           responseData.evidence.push({
                "id": secondResData.question.items[0].id,
                "choice_id":secondResData.question.items[0].choices[0].id,
           });
           console.log('Your responseData variable has been updated to: '+ responseData);
      };
-     if(answer=== "No"){
+     if(answer=== "no"){
           responseData.evidence.push({
-               "id": secondResData.question.items[1].id,
-               "choice_id":secondResData.question.items[1].choices[1].id,
+               "id": secondResData.question.items[0].id,
+               "choice_id":secondResData.question.items[0].choices[1].id,
           });
           console.log('Your responseData variable has been updated to: '+ responseData);
 
      };
-     if(answer=== "Don't know"){
+     if(answer=== "unknown"){
           responseData.evidence.push({
-               "id": secondResData.question.items[2].id,
-               "choice_id":secondResData.question.items[2].choices[2].id,
+               "id": secondResData.question.items[0].id,
+               "choice_id":secondResData.question.items[0].choices[2].id,
           });
 
      };
 };
 
 //function to dynamically render conditions onto HTML table
-
+//04.04 conditions not rendering properly
 function listCondition(){
+     var condition = secondResData.conditions;
      var html = "";
-     $.each(function () {
+     $.each(condition,function () {
           // Append results tr
-          html = html + "<tr>"
-               + "<tb>"
+          html = html + "<ul>"
+               + "<li>"
                + secondResData.conditions.name
-               + "</tb>"
-               + "<td>"
+               + "</li>"
+               + "<li>"
                +  secondResData.conditions.probability
-               + "</td>"
-               + "</tr>";
+               + "</li>"
+               + "</ul>";
      });
-     $("#condition_table").html(html);
+     $("condition_list").html(html);
 
 }
 
@@ -211,9 +212,9 @@ $('#start_questions').on('click',function () {
 //submits an answer and updates diagnosisRequest for next question
 $('#submit').on('click',function(){
 
-                         listCondition();
-
                          selectAnswer();
+
+                         listCondition();
 
                          console.log( 'By submitting an answer, the responseData variable is now this: ' + responseData)
                          //updates new data with additional array evidence
