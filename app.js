@@ -119,7 +119,7 @@ function listCondition(){
 
 
 //main event handlers
-$('#info_submit').on('click',function(){
+$('#info_submit').on('click',function(event){
                          event.preventDefault();
 
                          // updates global variables based on user input
