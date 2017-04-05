@@ -95,25 +95,27 @@ function  selectAnswer(){
      };
 };
 
+//variable that keeps track of condition count
+var conditionCount = 0;
+
 //function to dynamically render conditions onto HTML table
-//04.04 conditions not rendering properly
 function listCondition(){
-     var condition = secondResData.conditions;
-     var html = "";
-     $.each(condition,function () {
+     var index = secondResData.conditions.length-1;
+     if (conditionCount < secondResData.conditions.length){
           // Append results li to ul
-          html = html + "<ul> "
-               + "<li> <p>"
-               + secondResData.conditions.name
-               + "</p>"
+           var html = "<ul> "
                + "<li>"
-               +  (secondResData.conditions.probability)*100
+               + secondResData.conditions[index].name
+               + " - "
+               +  Math.round((secondResData.conditions[index].probability)*100)
+               + "%"
                + "</li>"
                + "</ul>";
-     });
-     $("condition_list").html(html);
 
-}
+          $("#condition_list").append(html);
+          conditionCount = secondResData.conditions.length;
+     };
+};
 
 
 //main event handlers
