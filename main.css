@@ -16,7 +16,7 @@ h1 {
 }
 
 .background {
-    background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ),url(images/background3.jpg);
+    background-image: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ),url(images/background3.jpg);
     background-size: cover;
     margin: 0;
 }
@@ -66,7 +66,7 @@ h1 {
 
 .intro_text {
     height: 700px;
-    background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ),url(images/symptom_checker.jpg);
+    background-image: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ),url(images/symptom_checker.jpg);
     background-size: 100% 100%;
     background-repeat: no-repeat;
     font-size: 20px;
@@ -332,6 +332,7 @@ table, td, th {
     left: 20px;
     z-index: 1;
     cursor: pointer;
+    font-size: 15pt;
 }
 
 .sidebar {
