@@ -67,10 +67,6 @@ function getQuestion(){
 //function to capture selected answer and update responseData
 function  selectAnswer(){
      var answer = $("input[name=mcq]:checked").val();
-     if (!answer){
-          alert('Please select an answer');
-          return false
-                   };
      if(answer=== "yes"){
           responseData.evidence.push({
                "id": secondResData.question.items[0].id,
@@ -194,6 +190,7 @@ $('#info_submit').on('click',function(event){
 
 $('#start_questions').on('click',function () {
 
+                         $('#question_container').removeClass('hidden');
 
                          if(diagnosisRequest.data.length === 0){
                               alert('A symptom must be recorded before getting properly diagnosed.')
@@ -222,13 +219,21 @@ $('#submit').on('click',function(){
                          //updates new data with additional array evidence
                          diagnosisRequest.data = JSON.stringify(responseData);
 
-                         $('#next').removeClass('hidden');
-                         $('#submit').addClass('hidden');
+                         $('input[type=radio]').prop('checked',false);//clears previosly selected answer
+                         $.ajax(diagnosisRequest).done(function (response3) {
+                                   console.log(response3);
+                                   secondResData = eval(response3);
+                                   console.log(secondResData);
+                                   getQuestion();
+                              });
+
+                         //$('#next').removeClass('hidden');
+                         //$('#submit').addClass('hidden');
 
 
 });
 
-
+/*
 $('#next').on('click',function(){
                          $('input[type=radio]').prop('checked',false);//clears previosly selected answer
                          $.ajax(diagnosisRequest).done(function (response3) {
@@ -241,6 +246,7 @@ $('#next').on('click',function(){
                          $('#next').addClass('hidden');
 
 });
+*/
 
 
 //removes red highlight on forms that get submitted
