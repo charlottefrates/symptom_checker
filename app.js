@@ -92,12 +92,12 @@ function  selectAnswer(){
 };
 
 //variable that keeps track of condition count
-var conditionCount = 0;
+//var conditionCount = 0;
 
 //function to dynamically render conditions onto HTML table
 function listCondition(){
      var index = secondResData.conditions.length-1;
-     if (conditionCount < secondResData.conditions.length){
+     //if (conditionCount < secondResData.conditions.length){
           // Append results li to ul
            var html = "<ul> "
                + "<li>"
@@ -110,7 +110,7 @@ function listCondition(){
 
           $("#condition_list").append(html);
           conditionCount = secondResData.conditions.length;
-     };
+     //};
 };
 
 
@@ -160,8 +160,13 @@ $('#info_submit').on('click',function(event){
 
                          // first request response
                          $.ajax(firstRequest).done(function (response) {
+                              // collapses accordian 1
+                              $('#firstAccordian').attr('checked',true);
                               // opens first accordian on enter
                               $('#secondAccordian').removeAttr('checked');
+                              // opens third accordian on enter
+                              $('#thirdAccordian').removeAttr('checked');
+
                               firstResData = eval(response); //JSON.parse() or eval
 
                               if(firstResData.mentions.length === 0){
@@ -198,10 +203,6 @@ $('#start_questions').on('click',function () {
                          } // Is this the right approach?
 
                          $.ajax(diagnosisRequest).done(function (response2) {
-                                   // collapses accordian 1
-                                   $('#firstAccordian').attr('checked',true);
-                                   // opens third accordian on enter
-                                   $('#thirdAccordian').removeAttr('checked');
                                    secondResData = eval(response2);
                                    console.log(secondResData);
                                    getQuestion();
@@ -241,7 +242,7 @@ $(document).ready(function () {
           $('.container').removeClass('hidden');
           $('#introduction').addClass('hidden');
           $('.html').addClass('background');
-          $('#sidebar').removeClass('hidden');
+          $('.footer').removeClass('hidden');
      });
 
      // Get the modal
