@@ -227,26 +227,7 @@ $('#submit').on('click',function(){
                                    getQuestion();
                               });
 
-                         //$('#next').removeClass('hidden');
-                         //$('#submit').addClass('hidden');
-
-
 });
-
-/*
-$('#next').on('click',function(){
-                         $('input[type=radio]').prop('checked',false);//clears previosly selected answer
-                         $.ajax(diagnosisRequest).done(function (response3) {
-                                   console.log(response3);
-                                   secondResData = eval(response3);
-                                   console.log(secondResData);
-                                   getQuestion();
-                              });
-                         $('#submit').removeClass('hidden');
-                         $('#next').addClass('hidden');
-
-});
-*/
 
 
 //removes red highlight on forms that get submitted
