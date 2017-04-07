@@ -327,6 +327,10 @@ input[type="radio"] {
     text-decoration: inherit;
 }
 
+.hover:hover{
+     color:white;
+}
+
 
 /* ---- modal pop-up----- */
 
@@ -385,9 +389,9 @@ input[type="radio"] {
 }
 
 
-/*media queries*/
 
 
+/* ----------- Media Queries ----------- */
 /* ----------- mobile phones ----------- */
 
 @media only screen and (max-width: 768px) {
@@ -410,6 +414,7 @@ input[type="radio"] {
         margin-top: 20%;
     }
     #welcome {
+         padding-top: 150px;
         box-sizing: border-box;
         display: block;
         height: 300px;

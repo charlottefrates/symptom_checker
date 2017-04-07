@@ -92,9 +92,11 @@ function  selectAnswer(){
 };
 
 //variable that keeps track of condition count
+//adding this variable doesnt work because API updates the indivial array values
+//API doesnt just add on to the length
 //var conditionCount = 0;
 
-//function to dynamically render conditions onto HTML table
+//function to dynamically render conditions onto HTML
 function listCondition(){
      var index = secondResData.conditions.length-1;
      //if (conditionCount < secondResData.conditions.length){
@@ -109,9 +111,34 @@ function listCondition(){
                + "</ul>";
 
           $("#condition_list").append(html);
-          conditionCount = secondResData.conditions.length;
+          //conditionCount = secondResData.conditions.length;
      //};
 };
+
+//possible work around to changes in secondResData.conditions array length and values
+function listCondition2(){
+     $.each(responseData, function(index) {
+               $.each(responseData[index], function (index, value) {
+                    console.log(value.name);
+                    console.log(value.probability);
+
+                    var text = "<ul> "
+                        + "<li>"
+                        + value.name
+                        + " - "
+                        +  Math.round((value.probability)*100)
+                        + "%"
+                        + "</li>"
+                        + "</ul>";
+
+                        $("#condition_list").append(text);
+
+               });
+
+
+          });
+
+}
 
 
 //main event handlers
@@ -213,6 +240,8 @@ $('#start_questions').on('click',function () {
 $('#submit').on('click',function(){
 
                          selectAnswer();
+
+                         //listCondition();
 
                          listCondition();
 
