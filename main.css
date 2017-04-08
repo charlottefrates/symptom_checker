@@ -201,7 +201,7 @@ input[type="radio"] {
 }
 
 .accordian .artlist {
-    font-size: 17px;
+    font-size: 25px;
     position: relative;
     overflow: hidden;
     max-height: 800px;
