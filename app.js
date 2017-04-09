@@ -91,52 +91,25 @@ function  selectAnswer(){
      };
 };
 
-//variable that keeps track of condition count
-//adding this variable doesnt work because API updates the indivial array values
-//API doesnt just add on to the length
-//var conditionCount = 0;
 
 //function to dynamically render conditions onto HTML
 function listCondition(){
-     var index = secondResData.conditions.length-1;
-     //if (conditionCount < secondResData.conditions.length){
-          // Append results li to ul
-           var html = "<ul> "
-               + "<li>"
-               + secondResData.conditions[index].name
-               + " - "
-               +  Math.round((secondResData.conditions[index].probability)*100)
-               + "%"
-               + "</li>"
-               + "</ul>";
-
-          $("#condition_list").append(html);
-          //conditionCount = secondResData.conditions.length;
-     //};
-};
-
-//possible work around to changes in secondResData.conditions array length and values
-function listCondition2(){
-     $.each(responseData, function(index) {
-               $.each(responseData[index], function (index, value) {
+          $.each(secondResData.conditions, function (index, value) {
                     console.log(value.name);
                     console.log(value.probability);
 
                     var text = "<ul> "
-                        + "<li>"
-                        + value.name
-                        + " - "
-                        +  Math.round((value.probability)*100)
-                        + "%"
-                        + "</li>"
-                        + "</ul>";
+                              + "<li>"
+                              + value.name
+                              + " - "
+                              +  Math.round((value.probability)*100)
+                              + "%"
+                              + "</li>"
+                              + "</ul>";
 
-                        $("#condition_list").append(text);
+                $("#condition_list").append(text);
 
-               });
-
-
-          });
+           });
 
 }
 
@@ -241,21 +214,25 @@ $('#submit').on('click',function(){
 
                          selectAnswer();
 
-                         //listCondition();
-
-                         listCondition();
-
                          console.log( 'By submitting an answer, the responseData variable is now this: ' + responseData)
                          //updates new data with additional array evidence
                          diagnosisRequest.data = JSON.stringify(responseData);
 
                          $('input[type=radio]').prop('checked',false);//clears previosly selected answer
+
                          $.ajax(diagnosisRequest).done(function (response3) {
-                                   console.log(response3);
                                    secondResData = eval(response3);
                                    console.log(secondResData);
                                    getQuestion();
                               });
+
+                              //clear previosly added conditions
+                              $("#condition_list").empty();
+
+                              //renders conditions into DOM
+                              listCondition();
+
+
 
 });
 
