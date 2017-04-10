@@ -348,6 +348,7 @@ input[type="radio"] {
 
 .hover:hover{
      color:blue;
+     cursor: pointer;
 }
 
 
