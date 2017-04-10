@@ -1,4 +1,4 @@
-/* ---- Main Content----- */
+/* ------------------------- Main Content ------------------------------ */
 .html{
      background: #cfe8fb;
 }
@@ -145,7 +145,7 @@ background: black;
 }
 
 
-/* ---- Fieldset----- */
+/* ---------------------------------- Fieldset----------------------------------- */
 
 fieldset {
     margin: 20px;
@@ -177,7 +177,7 @@ label {
 .select {
     text-align: center;
     display: inline-block;
-    width: 15%;
+    width: 100px;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -195,7 +195,7 @@ input[type="radio"] {
 }
 
 
-/* ---- Accordian----- */
+/* ---------------------------------- Accordian----------------------------------- */
 
 .accordian .transition, .accordian .artlist, .accordian ul li i:before, .accordian ul li i:after {
     transition: all 0.25s ease-in-out;
@@ -315,7 +315,7 @@ input[type="radio"] {
 }
 
 
-/* ---- Footer----- */
+/* ---------------------------------- Footer----------------------------------- */
 
 .footer {
      margin-top: 30px;
@@ -351,7 +351,7 @@ input[type="radio"] {
 }
 
 
-/* ---- modal pop-up----- */
+/* ---------------------------------- modal pop-up----------------------------------- */
 
 .modal {
     display: none;
@@ -410,10 +410,11 @@ input[type="radio"] {
 
 
 
-/* ----------- Media Queries ----------- */
+/* --------------------------------------- Media Queries --------------------------------------- */
+
 /* ----------- mobile phones ----------- */
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 800px) {
     h1 {
         color: white;
         text-shadow: 2px 2px 4px #000000;
@@ -535,4 +536,9 @@ input[type="radio"] {
     body {
         margin-bottom: 20px;
     }
+}
+
+/* ----------- ipads ----------- */
+
+@media only screen and (max-height: 1000px) {
 }
