@@ -12,6 +12,7 @@
      <body>
           <header>
           </header>
+          <div class="wrapper">
 
           <!-- Landing Page------->
           <div id="introduction" class="">
@@ -25,6 +26,7 @@
 
           <!-- Our services are smart, anonymous, mobile ready and completely free.------->
           <!-- Main Page Content ------->
+
           <div class="container hidden page-content">
                  <div class="accordian">
                       <ul>
@@ -54,7 +56,7 @@
 
                                              <fieldset>
                                                   <legend>Analysis</legend>
-                                                  <label for="name">Symptom:</label><br>
+                                                  <label for="name" id="symptomLabel">Symptom:</label>
                                                   <input id="symptoms" class="required"type="text" placeholder="'I have a sore throat' or 'My head hurts'"><br>
                                              </fieldset>
 
@@ -138,19 +140,25 @@
                  </div><!-- End Accordian -->
           </div><!-- End Container -->
 
+
+          </div>
           <!-- Main Page Footer ------->
           <footer class="footer hidden">
              <div class="footercontainer">
-                <div class="text-muted">
-                  <div style="float:left;width:50%"><span>Powered By Infermedica: Artificial Intelligence for Healthcare Companies</span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                  <div class="text-muted">
+                      <div style="float:left;width:50%"><span>Powered By Infermedica: Artificial Intelligence for Healthcare Companies</span>
+                           <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                      </div>
 
-                  <div style="float:right;width:50%"><span class="hover" id="about">About</span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <span><a class="link hover" href="http://www.infermedica.com/" target="_blank">Infermedica API</a></span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <span><a class="link hover" href="mailto:charlottefrates@gmail.com?subject=Symptom Checker App">Contact Us</a></span>
-                  </div>
+                      <div style="float:right;width:50%">
+                           <span class="hover" id="home">Home</span>
+                           <span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                           <span class="hover" id="about">About</span>
+                           <span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                           <span><a class="link hover" href="http://www.infermedica.com/" target="_blank">Infermedica API</a></span>
+                           <span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                           <span><a class="link hover" href="mailto:charlottefrates@gmail.com?subject=Symptom Checker App">Contact Us</a></span>
+                    </div>
                 </div>
              </div>
           </footer>

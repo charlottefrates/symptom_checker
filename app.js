@@ -253,7 +253,7 @@ $(document).ready(function () {
      $('#enter').on('click',function(){
           $('.container').removeClass('hidden');
           $('#introduction').addClass('hidden');
-          $('.html').addClass('background');
+          $('.wrapper').addClass('background');
           $('.footer').removeClass('hidden');
      });
 
@@ -279,4 +279,9 @@ $(document).ready(function () {
              modal.style.display = "none";
          }
     };
+
+    //Play Again
+    $("#home").click(function() {
+         location.reload(true);
+    });
 });
