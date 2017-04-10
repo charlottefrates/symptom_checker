@@ -1,5 +1,5 @@
 //global variables
-var name, sex, age, text;
+var sex, age, text;
 
 //variable that holds symptom text to be sent to API for first symptom analysis
 var data = { };
@@ -36,7 +36,7 @@ var responseData = {
                          "extras": {"ignore_groups":true} //ignores group questions and ONLY returns single questions
                     };
 
-//Second API reqeust that triggers diagnosis questions
+//API request(s) that triggers diagnosis questions and condition analysis
 var diagnosisRequest = {
                          "async": true,
                          "crossDomain": true,
@@ -52,7 +52,7 @@ var diagnosisRequest = {
                          "data": JSON.stringify(responseData),
                     };
 
-//variable that holds second response from API which has disgnosis questions to be answered
+//variable that holds second response from API which has disgnosis questions to be answered and conditions to be listed
 var secondResData;
 
 
@@ -72,14 +72,14 @@ function  selectAnswer(){
                "id": secondResData.question.items[0].id,
                "choice_id":secondResData.question.items[0].choices[0].id,
           });
-          console.log('Your responseData variable has been updated to: '+ responseData);
+          console.log(' "yes" answer for responseData variable was selected');
      };
      if(answer=== "no"){
           responseData.evidence.push({
                "id": secondResData.question.items[0].id,
                "choice_id":secondResData.question.items[0].choices[1].id,
           });
-          console.log('Your responseData variable has been updated to: '+ responseData);
+          console.log('"no" answer for  responseData variable was selected');
 
      };
      if(answer=== "unknown"){
@@ -87,6 +87,7 @@ function  selectAnswer(){
                "id": secondResData.question.items[0].id,
                "choice_id":secondResData.question.items[0].choices[2].id,
           });
+          console.log('"unknown" answer for  responseData variable was selected');
 
      };
 };
@@ -125,7 +126,7 @@ $('#info_submit').on('click',function(event){
                           age   = $('#patient_age').val();
                           text  = $('#symptoms').val();
 
-                          // requires users to fill in form fields_highlights area and pushes an alert
+                          // conditionals that requires users to fill in form fields - highlights area and pushes an alert if form not filled
                           if ((age === null) || (age === undefined) || (age.length === 0 )){
                                $('#patient_age').addClass('highlight');
                                alert('Please let me know how old you are.');
@@ -143,22 +144,20 @@ $('#info_submit').on('click',function(event){
                                return false;
                          };
 
-                         // Does !text and !age work the same way?
 
-
-                         // updates text variable and stringify for first request POST
+                         // updates text variable with user inputted text
                          data.text = text;
+
                          //updates data variable into JSON string
                          firstRequest.data = JSON.stringify(data);
 
 
                          //user entry information log
-                         console.log('The patient\'s name is '+ name + '.');
                          console.log('The patient is a '+ sex + '.');
                          console.log('The patient is '+ age + ' years old.');
                          console.log('The patient\'s symptom is as follows: '+ text);
 
-                         // first request response
+                         // API response completion - first request response with symptom diagnosis
                          $.ajax(firstRequest).done(function (response) {
                               // collapses accordian 1
                               $('#firstAccordian').attr('checked',true);
@@ -178,6 +177,7 @@ $('#info_submit').on('click',function(event){
                                    console.log('This will get sent do get diagnosis questions (variable name: responseData)' + responseData);
                                    $('#main_symptom').text(firstResData.mentions[0].name);
 
+                                   //updates responseData objects
                                    responseData.sex = sex;
                                    responseData.age = age;
                               	responseData.evidence[0].id = firstResData.mentions[0].id;
@@ -193,47 +193,51 @@ $('#info_submit').on('click',function(event){
 
                       });
 
+//starts diagnosis questions for better condition analysis
 $('#start_questions').on('click',function () {
 
+                         // reveals diagnosis questions
                          $('#question_container').removeClass('hidden');
 
                          if(diagnosisRequest.data.length === 0){
                               alert('A symptom must be recorded before getting properly diagnosed.')
                               return false;
-                         } // Is this the right approach?
+                         }
 
+                         // API response completion - returns response with 1st symptom questions and 1st condition diagnosis
                          $.ajax(diagnosisRequest).done(function (response2) {
                                    secondResData = eval(response2);
-                                   console.log(secondResData);
+
+                                   console.log('The API responded with: '+ secondResData);
+
                                    getQuestion();
                          });
-                      });
+});
 
-//submits an answer and updates diagnosisRequest for next question
+//submits an answer to symptom questions and updates diagnosisRequest for next question
 $('#submit').on('click',function(){
 
                          selectAnswer();
 
                          console.log( 'By submitting an answer, the responseData variable is now this: ' + responseData)
+
                          //updates new data with additional array evidence
                          diagnosisRequest.data = JSON.stringify(responseData);
 
                          $('input[type=radio]').prop('checked',false);//clears previosly selected answer
 
+                         // API response completion - returns more questions based on user answers
                          $.ajax(diagnosisRequest).done(function (response3) {
                                    secondResData = eval(response3);
-                                   console.log(secondResData);
+                                   console.log(secondResData)
                                    getQuestion();
                               });
 
-                              //clear previosly added conditions
-                              $("#condition_list").empty();
+                         //clear previosly added conditions
+                         $("#condition_list").empty();
 
-                              //renders conditions into DOM
-                              listCondition();
-
-
-
+                         //renders new conditions into DOM
+                         listCondition();
 });
 
 
@@ -244,6 +248,8 @@ $('.required').keydown(function(){
 
 //Load on page
 $(document).ready(function () {
+
+     //landing page hide
      $('#enter').on('click',function(){
           $('.container').removeClass('hidden');
           $('#introduction').addClass('hidden');
@@ -273,8 +279,4 @@ $(document).ready(function () {
              modal.style.display = "none";
          }
     };
-
-
-
-
 });
