@@ -114,6 +114,13 @@ function listCondition(){
 
 }
 
+function showCondition(){
+     $('html, body').animate({
+          scrollTop: $("#condition_list").offset().top
+     }, 300);
+
+}
+
 
 //main event handlers
 $('#info_submit').on('click',function(event){
@@ -212,6 +219,9 @@ $('#start_questions').on('click',function () {
 
                                    getQuestion();
                          });
+
+                         //removes start question button
+                         $('#start_questions').addClass('hidden');
 });
 
 //submits an answer to symptom questions and updates diagnosisRequest for next question
@@ -238,8 +248,18 @@ $('#submit').on('click',function(){
 
                          //renders new conditions into DOM
                          listCondition();
+
+                         //scroll in to view conditions
+                         showCondition();
 });
 
+$('#moreQuestions').on('click',function(){
+                         //scroll in to view more questions
+                         $('html, body').animate({
+                              scrollTop: $("#question_container").offset().top
+                         }, 300);
+
+})
 
 //removes red highlight on forms that get submitted
 $('.required').keydown(function(){

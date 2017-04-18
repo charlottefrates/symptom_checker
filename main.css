@@ -25,7 +25,7 @@ h1 {
 .container {
     width: 80%;
     height: 100%;
-    margin: 50px auto 0;
+    margin: 50px auto 50px;
     background: white;
     padding: 10px 20px;
     text-align: center;
@@ -50,7 +50,7 @@ h1 {
     cursor: pointer;
 }
 
-#info_submit, #present, #absent, #start_questions, #next, #submit {
+#info_submit, #present, #absent, #start_questions, #next, #submit,#moreQuestions {
     text-align: center;
     font-size: 10pt;
     margin: 3px;
@@ -69,7 +69,7 @@ h1 {
 }
 
 #welcome {
-    margin-top: -400px;
+    margin-top: -540px;
     box-sizing: border-box;
     display: block;
 }
@@ -83,13 +83,13 @@ background: black;
     padding: 30px;
     position: relative;
     z-index: 2;
-    background: rgba(0, 0, 0, 0.35)
+    background: rgba(0, 0, 0, 0.45)
 }
 
 
 .intro_text {
     height: 1000px;
-    background-image:url(images/symptom_checker.jpg);
+    background-image:linear-gradient( rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),url(images/symptom_checker.jpg);
     background-size: 100% 100%;
     background-repeat: no-repeat;
     font-size: 30px;
@@ -434,12 +434,12 @@ input[type="radio"] {
         padding: 14px;
         position: relative;
         z-index: 2;
-        background: rgba(0, 0, 0, 0.25)
+        background: rgba(0, 0, 0, 0.4)
     }
 
 
     #welcome {
-    margin-top: -330px;
+    margin-top: -430px;
     box-sizing: border-box;
     display: block;
     margin-left: auto;
@@ -448,8 +448,8 @@ input[type="radio"] {
 
     .intro_text {
         height: 800px;
-        background-image:url(images/symptom_checker_small.jpg);
-        background-size: 100% 100%;
+        background-image:linear-gradient( rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),url(images/symptom_checker_small.jpg);
+        background-size: cover;
         background-repeat: no-repeat;
         font-size: 30px;
     }
@@ -496,12 +496,12 @@ input[type="radio"] {
         padding: 14px;
         position: relative;
         z-index: 2;
-        background: rgba(0, 0, 0, 0.25)
+        background: rgba(0, 0, 0, 0.4)
     }
 
 
     #welcome {
-    margin-top: -500px;
+    margin-top: -550px;
     box-sizing: border-box;
     display: block;
     margin-left: auto;
@@ -510,8 +510,8 @@ input[type="radio"] {
 
     .intro_text {
         height: 800px;
-        background-image:url(images/symptom_checker_small.jpg);
-        background-size: 100% 100%;
+        background-image:linear-gradient( rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),url(images/symptom_checker_small.jpg);
+        background-size: cover;
         background-repeat: no-repeat;
         font-size: 30px;
     }
