@@ -52,10 +52,12 @@ h1 {
 
 #info_submit, #present, #absent, #start_questions, #next, #submit,#moreQuestions {
     text-align: center;
-    font-size: 10pt;
+    font-size: 12pt;
+    font-family: Oswald;
     margin: 3px;
     border-radius: 5px;
     cursor: pointer;
+    background-color: #77abec;
 }
 
 #introduction {
@@ -138,9 +140,11 @@ background: black;
 #symptoms {
     width: 60%;
     height: 20px;
+    margin-bottom: 20px;
 }
 
 #patient_name, #patient_age {
+    margin-bottom: 10px;
     height: 20px;
 }
 
@@ -168,7 +172,8 @@ legend {
 label {
     text-align: right;
     width: 10%;
-    margin-right: 0.5em;
+    margin-right: 10px;
+    margin-left: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
     font-weight: bold;
@@ -348,7 +353,7 @@ input[type="radio"] {
 }
 
 .hover:hover{
-     color:blue;
+     color:#77abec;
      cursor: pointer;
 }
 
