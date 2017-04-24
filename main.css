@@ -181,17 +181,12 @@ label {
 
 .select {
     text-align: center;
-    display: inline-block;
     width: 100px;
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
 input[type="radio"] {
-    display: inline-flex;
-}
-
-#choice_id {
     display: inline-flex;
 }
 
