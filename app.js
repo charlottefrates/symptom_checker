@@ -166,20 +166,23 @@ $('#info_submit').on('click',function(event){
 
                          // API response completion - first request response with symptom diagnosis
                          $.ajax(firstRequest).done(function (response) {
-                              // collapses accordian 1
-                              $('#firstAccordian').attr('checked',true);
-                              // opens first accordian on enter
-                              $('#secondAccordian').removeAttr('checked');
-                              // opens third accordian on enter
-                              $('#thirdAccordian').removeAttr('checked');
 
                               firstResData = eval(response); //JSON.parse() or eval
+
 
                               if(firstResData.mentions.length === 0){
                                    alert('Your symptom was not found. Please seek professional care.');
                               }
 
                               else{
+                                   // collapses accordian 1
+                                   $('#firstAccordian').attr('checked',true);
+                                   // opens first accordian on enter
+                                   $('#secondAccordian').removeAttr('checked');
+                                   // reveals start diagnosis questions
+                                   $('#start_questions').removeClass('hidden');
+
+
                                    console.log('First Request Response (variable name:firstResData):'+ firstResData);
                                    console.log('This will get sent do get diagnosis questions (variable name: responseData)' + responseData);
                                    $('#main_symptom').text(firstResData.mentions[0].name);
@@ -243,6 +246,9 @@ $('#submit').on('click',function(){
                                    getQuestion();
                               });
 
+                         // opens third accordian on enter
+                         $('#thirdAccordian').removeAttr('checked');
+
                          //clear previosly added conditions
                          $("#condition_list").empty();
 
@@ -251,6 +257,9 @@ $('#submit').on('click',function(){
 
                          //scroll in to view conditions
                          showCondition();
+
+                         //reveals morequestions button
+                         $('#moreQuestions').removeClass('hidden');
 });
 
 $('#moreQuestions').on('click',function(){
