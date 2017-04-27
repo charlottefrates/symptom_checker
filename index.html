@@ -15,9 +15,13 @@
           <div class="wrapper">
 
           <!-- Landing Page------->
-          <div id="introduction" class="">
-               <div class="intro_text"></div>
 
+          <div id="introduction" class="intro_text">
+
+               <div class="">
+                    <h2 id="banner"> Feeling a little under the weather?</h2>
+
+               </div>
                <h1 id="welcome"  class="onTop">
                Welcome to Symptom Checker,<br> an online tool that recognizes symptoms and identifies conditions.<br>
                <button id="enter" type="button" name="Enter"> Enter</button>
@@ -39,23 +43,35 @@
                                                <fieldset>
                                                   <legend>General Information</legend>
 
-                                                  <label for="age">Age:</label>
-                                                  <input id="patient_age" class="required" type="text" placeholder="20"><br>
 
+                                                  <!--
                                                   <label for="gender">Male</label>
                                                   <input type="radio" name="gender" value="male">
                                                   <label for="gender">Female</label>
                                                   <input type="radio" name="gender" value="female">
+                                                  -->
+
+                                                  <div class="inputfield">
+                                                       <!-- <label for="age">Age:</label> -->
+                                                       <input id="patient_age" class="required" type="text" placeholder="Age#">
+
+                                                       <!-- <label for="name" id="symptomLabel">Symptom:</label> -->
+                                                       <input id="symptoms" class="required"type="text" placeholder=" Specify a symptom like 'I have a sore throat' or 'My head hurts'">
+
+                                                       <select id="select">
+                                                            <option value="">Gender</option>
+                                                            <option value="1">Male</option>
+                                                            <option value="0">Female</option>
+                                                       </select>
+
+                                                       <br>
+
+                                                       <input id="info_submit"type="submit">
+
+                                                  </div>
 
                                              </fieldset>
 
-                                             <fieldset>
-                                                  <legend>Analysis</legend>
-                                                  <label for="name" id="symptomLabel">Symptom:</label>
-                                                  <input id="symptoms" class="required"type="text" placeholder="'I have a sore throat' or 'My head hurts'"><br>
-                                             </fieldset>
-
-                                             <input id="info_submit"type="submit">
                                         </form>
                                      </div>
                                 </div>

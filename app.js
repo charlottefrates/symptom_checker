@@ -55,6 +55,20 @@ var diagnosisRequest = {
 //variable that holds second response from API which has disgnosis questions to be answered and conditions to be listed
 var secondResData;
 
+//banner text change
+
+function textChange(){
+    cuenta = 0;
+    txtArray = [" Ouch! That hurts?","Achoo? Are dark clouds in the horizon?","Is your headache 'thunderous'?","Blurry vision? Are you having trouble seeing the light?"];
+    setInterval(function() {
+      cuenta++;
+      $("#banner").fadeOut(100, function() {
+        $(this)
+          .text(txtArray[cuenta % txtArray.length])
+          .fadeIn(100);
+      });
+    }, 3000);
+}
 
 //function to dynamically render questions and answers based on secondResData
 function getQuestion(){
@@ -129,7 +143,7 @@ $('#info_submit').on('click',function(event){
                          // updates global variables based on user input
                          //assignment
                           name  = $('#patient_name').val();
-                          sex   = $("input[name=gender]:checked").val();
+                          sex   = $( "#select option:selected" ).text();;
                           age   = $('#patient_age').val();
                           text  = $('#symptoms').val();
 
@@ -275,8 +289,12 @@ $('.required').keydown(function(){
      $('.required').removeClass('highlight');
 });
 
+
 //Load on page
 $(document).ready(function () {
+
+     //ladning page text change
+     textChange();
 
      //landing page hide
      $('#enter').on('click',function(){

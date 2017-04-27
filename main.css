@@ -1,6 +1,6 @@
 /* ------------------------- Main Content ------------------------------ */
 .html{
-     background: #cfe8fb;
+     background: #4a5961;
 }
 
 
@@ -15,6 +15,11 @@ h1 {
     text-shadow: 2px 2px 4px #000000;
     margin: 0px;
     font-size: 40pt;
+}
+
+h2{
+    margin:0;
+padding-top: 15%;
 }
 
 
@@ -70,7 +75,7 @@ h1 {
 }
 
 #welcome {
-    margin-top: -540px;
+    margin-top: 3%;
     box-sizing: border-box;
     display: block;
 }
@@ -137,14 +142,20 @@ background: black;
 }
 
 #symptoms {
+    padding-left: 3px;
+    font-size: 10pt;
     width: 60%;
-    height: 20px;
+    height:  50px;
     margin-bottom: 20px;
+    border-radius: 5px;
 }
 
-#patient_name, #patient_age {
+#patient_age {
+    padding-left: 3px;
+    font-size: 10pt;
     margin-bottom: 10px;
-    height: 20px;
+    height:  50px;
+    border-radius: 5px;
 }
 
 
@@ -191,6 +202,18 @@ input[type="radio"] {
 
 #symtomLabel{
      text-align: left;;
+}
+
+#select{
+    height:  55px;
+    width: 130px;
+    padding: 6px;
+    background: white;
+    -webkit-border-radius: 5px;
+}
+
+.inputfield{
+         padding-top: 30px;
 }
 
 
@@ -324,7 +347,7 @@ input[type="radio"] {
     width: 100%;
     padding-top: 20px;
     height: 30px;
-    background-color: #cfe7fb;
+    background-color: #4a5961;
     text-align: center;
     z-index: 3;
 }
@@ -337,7 +360,7 @@ input[type="radio"] {
 }
 
 .text-muted {
-    color: #777;
+    color: #cecdd4;
     text-align: center;
 }
 
@@ -416,127 +439,11 @@ input[type="radio"] {
 /* ----------- mobile phones ----------- */
 
 @media only screen and (max-width: 800px) {
-    h1 {
-        color: white;
-        text-shadow: 2px 2px 4px #000000;
-        margin: 0px;
-        margin-left: 100px;
-        margin-right: 100px;
-        font-size: 18pt;
-    }
-    .bar{
-         opacity: 0.5;
-    background: black;
-    }
 
-    .onTop {
-        padding: 14px;
-        position: relative;
-        z-index: 2;
-        background: rgba(0, 0, 0, 0.4)
-    }
-
-
-    #welcome {
-    margin-top: -430px;
-    box-sizing: border-box;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-     }
-
-    .intro_text {
-        height: 800px;
-        background-image:linear-gradient( rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),url(images/symptom_checker_small.jpg);
-        background-size: cover;
-        background-repeat: no-repeat;
-        font-size: 30px;
-    }
-
-
-    #enter {
-    margin: 20px;
-    letter-spacing: 0.3rem;
-    font-size: 18px;
-    font-family: Oswald;
-    text-transform: uppercase;
-    color: white;
-    margin-left: 1rem;
-    padding: 1rem 1rem 1rem 1rem;
-    background-color: #3399FF;
-    border: 1px black;
-    border-radius: 5px;
-    cursor: pointer;
-     }
-
-    .footer {
-        display: none;
-    }
-    body {
-        margin-bottom: 20px;
-    }
 }
 
 @media only screen and (max-width: 400px) {
-     h1 {
-        color: white;
-        text-shadow: 2px 2px 4px #000000;
-        margin: 0px;
-        margin-left: 100px;
-        margin-right: 100px;
-        font-size: 18pt;
-    }
-    .bar{
-         opacity: 0.5;
-    background: black;
-    }
 
-    .onTop {
-        padding: 14px;
-        position: relative;
-        z-index: 2;
-        background: rgba(0, 0, 0, 0.4)
-    }
-
-
-    #welcome {
-    margin-top: -550px;
-    box-sizing: border-box;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-     }
-
-    .intro_text {
-        height: 800px;
-        background-image:linear-gradient( rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),url(images/symptom_checker_small.jpg);
-        background-size: cover;
-        background-repeat: no-repeat;
-        font-size: 30px;
-    }
-
-
-    #enter {
-    margin: 5px;
-    letter-spacing: 0.3rem;
-    font-size: 18px;
-    font-family: Oswald;
-    text-transform: uppercase;
-    color: white;
-    margin-left: auto;
-    padding: 1rem 1rem 1rem 1rem;
-    background-color: #3399FF;
-    border: 1px black;
-    border-radius: 5px;
-    cursor: pointer;
-     }
-
-    .footer {
-        display: none;
-    }
-    body {
-        margin-bottom: 20px;
-    }
 }
 
 /* ----------- ipads ----------- */
