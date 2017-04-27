@@ -142,7 +142,9 @@ background: black;
 }
 
 #symptoms {
-    padding-left: 3px;
+    border-style: solid;
+    border-color: #BDC3C7;
+    padding-left: 10px;
     font-size: 10pt;
     width: 60%;
     height:  50px;
@@ -151,7 +153,9 @@ background: black;
 }
 
 #patient_age {
-    padding-left: 3px;
+    border-style: solid;
+    border-color: #BDC3C7;
+    padding-left: 10px;
     font-size: 10pt;
     margin-bottom: 10px;
     height:  50px;
@@ -205,9 +209,11 @@ input[type="radio"] {
 }
 
 #select{
-    height:  55px;
+    border: 2px solid #BDC3C7;
+    height: 57px;
     width: 130px;
-    padding: 6px;
+    padding-left: 10px;
+    font-size: 10pt;
     background: white;
     -webkit-border-radius: 5px;
 }

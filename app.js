@@ -67,7 +67,7 @@ function textChange(){
           .text(txtArray[cuenta % txtArray.length])
           .fadeIn(100);
       });
-    }, 3000);
+  }, 1800);
 }
 
 //function to dynamically render questions and answers based on secondResData
@@ -148,7 +148,7 @@ $('#info_submit').on('click',function(event){
                           text  = $('#symptoms').val();
 
                           // conditionals that requires users to fill in form fields - highlights area and pushes an alert if form not filled
-                          if ((age === null) || (age === undefined) || (age.length === 0 )){
+                          if ((age === null) || (age === undefined) || (age.length === 0 )|| (age === '')){
                                $('#patient_age').addClass('highlight');
                                alert('Please let me know how old you are.');
                                return false;
@@ -298,10 +298,13 @@ $(document).ready(function () {
 
      //landing page hide
      $('#enter').on('click',function(){
-          $('.container').removeClass('hidden');
-          $('#introduction').addClass('hidden');
-          $('.wrapper').addClass('background');
-          $('.footer').removeClass('hidden');
+
+         setInterval(function() {
+                 $('.container').removeClass('hidden');
+                 $('#introduction').addClass('hidden');
+                 $('.wrapper').addClass('background');
+                 $('.footer').removeClass('hidden');
+         },200)
      });
 
      // Get the modal
