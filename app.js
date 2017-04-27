@@ -143,7 +143,7 @@ $('#info_submit').on('click',function(event){
                          // updates global variables based on user input
                          //assignment
                           name  = $('#patient_name').val();
-                          sex   = $( "#select option:selected" ).text();;
+                          sex   = $( "#select option:selected" ).text();
                           age   = $('#patient_age').val();
                           text  = $('#symptoms').val();
 
@@ -154,7 +154,7 @@ $('#info_submit').on('click',function(event){
                                return false;
                          };
 
-                         if (!sex){
+                         if (sex === "Gender"){
                               alert('Please select a gender.');
                               return false;
                                        };
@@ -168,6 +168,7 @@ $('#info_submit').on('click',function(event){
 
                          // updates text variable with user inputted text
                          data.text = text;
+                         data.sex = sex;
 
                          //updates data variable into JSON string
                          firstRequest.data = JSON.stringify(data);
@@ -204,8 +205,8 @@ $('#info_submit').on('click',function(event){
                                    //updates responseData objects
                                    responseData.sex = sex;
                                    responseData.age = age;
-                              	responseData.evidence[0].id = firstResData.mentions[0].id;
-                              	responseData.evidence[0].choice_id = firstResData.mentions[0].choice_id;
+                                   responseData.evidence[0].id = firstResData.mentions[0].id;
+                              	   responseData.evidence[0].choice_id = firstResData.mentions[0].choice_id;
 
                                    //updates next request's data variable into JSON string
                                    diagnosisRequest.data = JSON.stringify(responseData);
