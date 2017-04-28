@@ -55,7 +55,7 @@ padding-top: 5%;
     cursor: pointer;
 }
 
-#present, #absent, #start_questions, #next, #submit,#moreQuestions {
+#present, #absent, #start_questions, #next, #submit,#moreQuestions,#checkAnother {
     text-align: center;
     font-size: 12pt;
     font-family: Oswald;
