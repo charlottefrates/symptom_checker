@@ -156,7 +156,7 @@ $('#moreQuestions').on('click',function(event){
 function showAnalysis(){
     $('html, body').animate({
           scrollTop: $("#submit").offset().top
-    }, 400);
+    }, 800);
 }
 
 function showCondition(){
@@ -230,17 +230,9 @@ $('#info_submit').on('click',function(event){
 
                                       setInterval (function () {
                                           $('#loading-container').addClass('hidden');
-                                           // collapses accordian 1
-                                           //$('#firstAccordian').attr('checked',true);
-                                           // opens second accordian on response
                                            $('#secondAccordian').removeAttr('checked');
-                                           // reveals start diagnosis questions
-                                           $('#start_questions').removeClass('hidden');
-
-                                           //$('#patientAge').text(age);
-                                           //$('#patientGender').text(sex);
                                            $('#patientSymptom').text(firstResData.mentions[0].name);
-                                       }, 800);//end of interval
+                                       }, 2000);//end of interval
 
                                        console.log('First Request Response (variable name:firstResData):'+ firstResData);
                                        console.log('This will get sent do get diagnosis questions (variable name: responseData)' + responseData);
@@ -260,6 +252,9 @@ $('#info_submit').on('click',function(event){
 
                              // reveals diagnosis questions
                              $('#question_container').removeClass('hidden');
+
+                             //hides ladning page info
+                             $('#saas').addClass('hidden');
 
                              showAnalysis();
 
@@ -333,7 +328,7 @@ $(document).ready(function () {
      var span = document.getElementsByClassName("close")[0];
 
      // When the user clicks the button, open the modal
-     $('#about').on('click', function() {
+     $('#disclaimer').on('click', function() {
          modal.style.display = "block";
     });
 
@@ -354,10 +349,18 @@ $(document).ready(function () {
          location.reload(true);
     });
 
+    //Check Another symptom
     $("#checkAnother").click(function() {
          location.reload(true);
     });
 
+    //Smooth scroll to about
 
+    $('#about').on('click',function(){
+         $('html, body').animate({
+             scrollTop: $('#saas').offset().top-55
+         }, 800, 'swing');
+
+    });
 
 });

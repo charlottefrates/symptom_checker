@@ -10,6 +10,13 @@ body {
      line-height: 1.42857143;
 }
 
+section{
+     margin-left: auto;
+     margin-right: auto;
+     margin-top: 50px;
+     margin-bottom: 100px;
+}
+
 h1 {
      color: white;
      text-shadow: 2px 2px 4px #000000;
@@ -102,8 +109,8 @@ h2 {
 }
 
 .intro_text {
-     height: 900px;
-     background-image: linear-gradient( rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url(images/symptom_checker.jpg);
+     height: 800px;
+     background-image:url(images/symptom_checker.jpg);
      background-size: 100% 100%;
      background-repeat: no-repeat;
      font-size: 30px;
@@ -169,6 +176,63 @@ input:-webkit-autofill {
      height: 50px;
      border-radius: 5px;
 }
+
+.about-text h2 {
+    line-height: 45px;
+    font-size: 40px;
+    margin-bottom: 0;
+}
+
+.about-text p {
+    font-size: 20px;
+    line-height: 35px;
+}
+
+.about-text{
+     margin-left: 25px;
+     margin-right: 25px;
+     display: inline-block;
+    width: 45%;
+    position: relative;
+}
+
+.about-img {
+    display: inline-block;
+    width: 45%;
+    float: right;
+    margin-top: 40px;
+}
+
+.data{
+     width: 423px;
+     height: 423px;
+}
+
+.anonymous-img {
+    display: inline-block;
+    width: 60%;
+    float: left;
+    padding-right: 50px;
+}
+
+.anonymous-text {
+    display: inline-block;
+    width: 35%;
+    position: relative;
+}
+
+.anonymous-text p {
+    font-size: 20px;
+    line-height: 35px;
+}
+
+.anonymous-text h2 {
+    line-height: 45px;
+    font-size: 40px;
+    margin-bottom: 0;
+}
+
+user agent stylesheet
 
 
 /* ---------------------------------- Fieldset----------------------------------- */
@@ -356,23 +420,12 @@ input[type="radio"] {
 }
 
 
-/* ---------------------------------- Footer----------------------------------- */
+/* ---------------------------------- nav----------------------------------- */
 
-.footer {
-     margin-top: 30px;
-     margin-bottom: 0px;
-     position: fixed;
-     bottom: 0;
-     width: 100%;
-     padding-top: 20px;
-     padding-bottom: 10px;
-     height: 30px;
-     background-color: white;
-     text-align: center;
-     z-index: 3;
-}
 
-.footer>.footercontainer {
+
+
+.footercontainer {
      padding: 0 10%;
      text-align: center;
      font-family: arial;
@@ -380,7 +433,7 @@ input[type="radio"] {
 }
 
 .text-muted {
-     color: #34495E;
+     color: #eef0f3;;
      text-align: center;
 }
 
