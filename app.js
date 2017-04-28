@@ -134,26 +134,43 @@ $('.required').keydown(function(){
 
 
 //Scroll into view functions
-$('#moreQuestions').on('click',function(){
+$('#moreQuestions').on('click',function(event){
+                         event.preventDefault();
+
+                         var page = $("html, body");
+
+                         page.on(function(){page.stop();});
+
+                         page.animate({ scrollTop: $("#question_container").offset().top }, 300, function(){
+                             page.off();
+                         });
+
+                         return false;
                          //scroll in to view more questions
-                         $('html, body').animate({
-                              scrollTop: $("#question_container").offset().top
-                         }, 300);
+                        // $('html, body').animate({
+                            //  scrollTop: $("#question_container").offset().top
+                         //}, 300);
 })
 
 
-function showCondition(){
-     $('html, body').animate({
-          scrollTop: $("#condition_list").offset().top
-     }, 400);
-}
-
 function showAnalysis(){
-     $('html, body').animate({
-          scrollTop: $("#thirdAccordian").offset().top
-     }, 400);
+    $('html, body').animate({
+          scrollTop: $("#submit").offset().top
+    }, 400);
 }
 
+function showCondition(){
+    var page = $("html, body");
+
+    page.on(function(){page.stop();});
+
+    page.animate({ scrollTop: $("#section_explanation").offset().top }, 300, function(){
+        page.off();
+    });
+
+    return false;
+
+}
 
 
 
@@ -218,7 +235,6 @@ $('#info_submit').on('click',function(event){
 
                                       setInterval (function () {
                                           $('#loading-container').addClass('hidden');
-                                           showAnalysis();
                                            // collapses accordian 1
                                            //$('#firstAccordian').attr('checked',true);
                                            // opens second accordian on response
@@ -250,6 +266,8 @@ $('#info_submit').on('click',function(event){
                              // reveals diagnosis questions
                              $('#question_container').removeClass('hidden');
 
+                             showAnalysis();
+
                              // Second API Request - returns response with 1st symptom questions and 1st condition diagnosis
                              $.ajax(diagnosisRequest).done(function (response2) {
                                        secondResData = eval(response2);
@@ -257,7 +275,6 @@ $('#info_submit').on('click',function(event){
                                        console.log('The API responded with: '+ secondResData);
 
                                        getQuestion();
-                                       showAnalysis();
 
                              });
                          });
@@ -311,6 +328,8 @@ $('#submit').on('click',function(){
 
 //Load on page
 $(document).ready(function () {
+      $('#firstAccordian').removeAttr('checked');
+      $('#secondAccordian').removeAttr('checked');
 
      //ladning page text change
      textChange();

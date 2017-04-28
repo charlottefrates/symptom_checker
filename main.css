@@ -127,7 +127,7 @@ background: black;
     margin-left: 50px;
     margin-right: 50px;
     margin-bottom: 30px;
-    padding: 10px;
+    padding-bottom: 15px;
     border-radius: 5px;
 }
 
@@ -183,7 +183,6 @@ fieldset {
     font-family: Oswald;
     border: 1px solid #1F497D;
     border-radius: 5px;
-    padding: 15px;
 }
 
 legend {
