@@ -67,7 +67,7 @@ function textChange(){
           .text(txtArray[cuenta % txtArray.length])
           .fadeIn(100);
       });
-  }, 1800);
+}, 3000);
 }
 
 //function to dynamically render questions and answers based on secondResData
@@ -131,7 +131,14 @@ function listCondition(){
 function showCondition(){
      $('html, body').animate({
           scrollTop: $("#condition_list").offset().top
-     }, 300);
+     }, 400);
+
+}
+
+function showAnalysis(){
+     $('html, body').animate({
+          scrollTop: $("#thirdAccordian").offset().top
+     }, 400);
 
 }
 
@@ -139,6 +146,9 @@ function showCondition(){
 //main event handlers
 $('#info_submit').on('click',function(event){
                          event.preventDefault();
+
+                         $('#container').removeClass('hidden');
+                         $('#footer').removeClass('hidden');
 
                          // updates global variables based on user input
                          //assignment
@@ -169,10 +179,10 @@ $('#info_submit').on('click',function(event){
                          // updates text variable with user inputted text
                          data.text = text;
                          data.sex = sex;
+                         data.text = text;
 
                          //updates data variable into JSON string
                          firstRequest.data = JSON.stringify(data);
-
 
                          //user entry information log
                          console.log('The patient is a '+ sex + '.');
@@ -180,6 +190,7 @@ $('#info_submit').on('click',function(event){
                          console.log('The patient\'s symptom is as follows: '+ text);
 
                          // API response completion - first request response with symptom diagnosis
+
                          $.ajax(firstRequest).done(function (response) {
 
                               firstResData = eval(response); //JSON.parse() or eval
@@ -190,9 +201,10 @@ $('#info_submit').on('click',function(event){
                               }
 
                               else{
+                                   showAnalysis();
                                    // collapses accordian 1
-                                   $('#firstAccordian').attr('checked',true);
-                                   // opens first accordian on enter
+                                   //$('#firstAccordian').attr('checked',true);
+                                   // opens second accordian on response
                                    $('#secondAccordian').removeAttr('checked');
                                    // reveals start diagnosis questions
                                    $('#start_questions').removeClass('hidden');
@@ -200,7 +212,9 @@ $('#info_submit').on('click',function(event){
 
                                    console.log('First Request Response (variable name:firstResData):'+ firstResData);
                                    console.log('This will get sent do get diagnosis questions (variable name: responseData)' + responseData);
-                                   $('#main_symptom').text(firstResData.mentions[0].name);
+                                   $('#patientAge').text(age);
+                                   $('#patientGender').text(sex);
+                                   $('#patientSymptom').text(firstResData.mentions[0].name);
 
                                    //updates responseData objects
                                    responseData.sex = sex;
@@ -214,7 +228,7 @@ $('#info_submit').on('click',function(event){
                             }
 
 
-                         });
+                        });
 
                       });
 
@@ -236,6 +250,7 @@ $('#start_questions').on('click',function () {
                                    console.log('The API responded with: '+ secondResData);
 
                                    getQuestion();
+                                   showAnalysis();
                          });
 
                          //removes start question button
@@ -257,12 +272,15 @@ $('#submit').on('click',function(){
                          // API response completion - returns more questions based on user answers
                          $.ajax(diagnosisRequest).done(function (response3) {
                                    secondResData = eval(response3);
-                                   console.log(secondResData)
+                                   console.log(secondResData);
                                    getQuestion();
                               });
 
                          // opens third accordian on enter
                          $('#thirdAccordian').removeAttr('checked');
+
+                         // collapses accordian 1
+                         $('#firstAccordian').attr('checked',true);
 
                          //clear previosly added conditions
                          $("#condition_list").empty();
@@ -273,8 +291,11 @@ $('#submit').on('click',function(){
                          //scroll in to view conditions
                          showCondition();
 
+
                          //reveals morequestions button
                          $('#moreQuestions').removeClass('hidden');
+
+
 });
 
 $('#moreQuestions').on('click',function(){
@@ -296,17 +317,6 @@ $(document).ready(function () {
 
      //ladning page text change
      textChange();
-
-     //landing page hide
-     $('#enter').on('click',function(){
-
-         setInterval(function() {
-                 $('.container').removeClass('hidden');
-                 $('#introduction').addClass('hidden');
-                 $('.wrapper').addClass('background');
-                 $('.footer').removeClass('hidden');
-         },200)
-     });
 
      // Get the modal
      var modal = document.getElementById('myModal');

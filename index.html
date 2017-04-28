@@ -20,18 +20,35 @@
 
                <div class="">
                     <h2 id="banner"> Feeling a little under the weather?</h2>
-
                </div>
+
                <h1 id="welcome"  class="onTop">
                Welcome to Symptom Checker,<br> an online tool that recognizes symptoms and identifies conditions.<br>
-               <button id="enter" type="button" name="Enter"> Enter</button>
+               <button class="hidden"id="enter" type="button" name="Enter"> Enter</button>
                </h1>
+
+               <div class="inputfield">
+                    <input id="patient_age" class="required" type="text" placeholder="Age">
+
+                    <select id="select">
+                         <option value="">Gender</option>
+                         <option value="1">male</option>
+                         <option value="0">female</option>
+                    </select>
+
+                    <input id="symptoms" class="required"type="text" placeholder=" Specify a symptom like 'I have a sore throat' or 'My head hurts'">
+
+
+                    <input id="info_submit"type="submit">
+
+               </div>
+
+
           </div>
 
           <!-- Our services are smart, anonymous, mobile ready and completely free.------->
           <!-- Main Page Content ------->
-
-          <div class="container hidden page-content">
+          <div id="container"class="container hidden page-content">
                  <div class="accordian">
                       <ul>
                            <!-- ACCORDIAN #1 ------->
@@ -40,36 +57,11 @@
                                 <div class="artlist">
                                      <div class="artlist_content">
                                           <form>
-                                               <fieldset>
+                                             <fieldset>
                                                   <legend>General Information</legend>
-
-
-                                                  <!--
-                                                  <label for="gender">Male</label>
-                                                  <input type="radio" name="gender" value="male">
-                                                  <label for="gender">Female</label>
-                                                  <input type="radio" name="gender" value="female">
-                                                  -->
-
-                                                  <div class="inputfield">
-                                                       <!-- <label for="age">Age:</label> -->
-                                                       <input id="patient_age" class="required" type="text" placeholder="Age">
-
-                                                       <!-- <label for="name" id="symptomLabel">Symptom:</label> -->
-                                                       <input id="symptoms" class="required"type="text" placeholder=" Specify a symptom like 'I have a sore throat' or 'My head hurts'">
-
-                                                       <select id="select">
-                                                            <option value="">Gender</option>
-                                                            <option value="1">male</option>
-                                                            <option value="0">female</option>
-                                                       </select>
-
-                                                       <br>
-
-                                                       <input id="info_submit"type="submit">
-
-                                                  </div>
-
+                                                  <p>Patient Age: "<span id="patientAge"></span>"</p>
+                                                  <p>Patient Gender: "<span id="patientGender"></span>"</p>
+                                                  <p>Patient symptom: "<span id="patientSymptom"></span>"</p>
                                              </fieldset>
 
                                         </form>
@@ -85,20 +77,6 @@
                                         Diagnosis is imporved as more questions are answered.
                                    </div>
                                </div>
-
-                              <!-- Renders main symtom here ------->
-                               <div class="artlist">
-                                   <div class="artlist_content" style="font-weight:bold;">
-                                        Main Symptom:
-                                   </div>
-                              </div>
-
-                              <div class="artlist">
-                                   <div id="main_symptom"class="artlist_content" style="display:block;">
-                                        ---
-                                   </div>
-                              </div>
-
                               <!-- Start question button ------->
                               <div class="artlist">
                                   <div class="artlist_content" style="font-weight:bold;">
@@ -155,7 +133,7 @@
 
           </div>
           <!-- Main Page Footer ------->
-          <footer class="footer hidden">
+          <footer id="footer"class="footer hidden">
              <div class="footercontainer">
                   <div class="text-muted">
                       <div style="float:left;width:50%"><span>Powered By Infermedica: Artificial Intelligence for Healthcare Companies</span>
