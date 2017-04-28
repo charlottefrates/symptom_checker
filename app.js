@@ -58,7 +58,7 @@ var secondResData;
 //banner text change
 function textChange(){
     cuenta = 0;
-    txtArray = [" Ouch! That hurts?","Achoo? Are dark clouds in the horizon?","Is your headache 'thunderous'?","Blurry vision? Are you having trouble seeing the light?"];
+    txtArray = [" Ouch! That hurts?","ACHOO? Are dark clouds on the horizon?","Is your headache 'thunderous'?","Blurry vision? Are you having trouble seeing the light?","Is there no sunshine in your life due to aches & pains?"];
     setInterval(function() {
       cuenta++;
       $("#banner").fadeOut(100, function() {
@@ -181,6 +181,7 @@ $('#info_submit').on('click',function(event){
                          };
 
                          if (sex === "Gender"){
+                             $('#select option:selected').addClass('highlight');
                               alert('Please select a gender.');
                               return false;
                                        };
@@ -205,73 +206,64 @@ $('#info_submit').on('click',function(event){
                          console.log('The patient is '+ age + ' years old.');
                          console.log('The patient\'s symptom is as follows: '+ text);
 
-                         //First API request response with symptom diagnosis
-                         $.ajax(firstRequest).done(function (response) {
-                              firstResData = eval(response); //JSON.parse() or eval
-                              if(firstResData.mentions.length === 0){
-                                  $('#loading-container').addClass('hidden');
-                                   alert('Your symptom was not found. Please seek professional care.');
-                              }
-                              else{
-
-                                  setInterval (function () {
+                         $.when(
+                             //First API request response with symptom diagnosis
+                             $.ajax(firstRequest).done(function (response) {
+                                  firstResData = eval(response); //JSON.parse() or eval
+                                  if(firstResData.mentions.length === 0){
                                       $('#loading-container').addClass('hidden');
-                                       showAnalysis();
-                                       // collapses accordian 1
-                                       //$('#firstAccordian').attr('checked',true);
-                                       // opens second accordian on response
-                                       $('#secondAccordian').removeAttr('checked');
-                                       // reveals start diagnosis questions
-                                       $('#start_questions').removeClass('hidden');
+                                       alert('Your symptom was not found. Please seek professional care.');
+                                  }
+                                  else{
 
+                                      setInterval (function () {
+                                          $('#loading-container').addClass('hidden');
+                                           showAnalysis();
+                                           // collapses accordian 1
+                                           //$('#firstAccordian').attr('checked',true);
+                                           // opens second accordian on response
+                                           $('#secondAccordian').removeAttr('checked');
+                                           // reveals start diagnosis questions
+                                           $('#start_questions').removeClass('hidden');
+
+                                           //$('#patientAge').text(age);
+                                           //$('#patientGender').text(sex);
+                                           $('#patientSymptom').text(firstResData.mentions[0].name);
+                                       }, 800);//end of interval
 
                                        console.log('First Request Response (variable name:firstResData):'+ firstResData);
                                        console.log('This will get sent do get diagnosis questions (variable name: responseData)' + responseData);
-                                       //$('#patientAge').text(age);
-                                       //$('#patientGender').text(sex);
-                                       $('#patientSymptom').text(firstResData.mentions[0].name);
 
-                                       //updates responseData objects
-                                       responseData.sex = sex;
-                                       responseData.age = age;
-                                       responseData.evidence[0].id = firstResData.mentions[0].id;
-                                  	   responseData.evidence[0].choice_id = firstResData.mentions[0].choice_id;
 
-                                       //updates next request's data variable into JSON string
-                                       diagnosisRequest.data = JSON.stringify(responseData);
-                                   }, 800);//end of interval
+                                   };//end of else
+                               }),//end of first API request
+                         ).then(function(){
+                             //updates responseData objects
+                             responseData.sex = sex;
+                             responseData.age = age;
+                             responseData.evidence[0].id = firstResData.mentions[0].id;
+                             responseData.evidence[0].choice_id = firstResData.mentions[0].choice_id;
 
-                               };//end of else
-                           });//end of first API request
+                             //updates next request's data variable into JSON string
+                             diagnosisRequest.data = JSON.stringify(responseData);
+
+                             // reveals diagnosis questions
+                             $('#question_container').removeClass('hidden');
+
+                             // Second API Request - returns response with 1st symptom questions and 1st condition diagnosis
+                             $.ajax(diagnosisRequest).done(function (response2) {
+                                       secondResData = eval(response2);
+
+                                       console.log('The API responded with: '+ secondResData);
+
+                                       getQuestion();
+                                       showAnalysis();
+
+                             });
+                         });
 
                       });//end on info_submit on click event
 
-//starts diagnosis questions for better condition analysis
-$('#start_questions').on('click',function () {
-
-                         // reveals diagnosis questions
-                         $('#question_container').removeClass('hidden');
-
-                         if(diagnosisRequest.data.length === 0){
-                              alert('A symptom must be recorded before getting properly diagnosed.')
-                              return false;
-                         }
-
-                         // Second API Request - returns response with 1st symptom questions and 1st condition diagnosis
-                         $.ajax(diagnosisRequest).done(function (response2) {
-                                   secondResData = eval(response2);
-
-                                   console.log('The API responded with: '+ secondResData);
-
-                                   getQuestion();
-                                   showAnalysis();
-
-                                   //removes start question button
-                                   $('#start_questions').addClass('hidden');
-                         });
-
-
-});
 
 //submits an answer to symptom questions and updates diagnosisRequest for next question
 $('#submit').on('click',function(){
