@@ -160,17 +160,12 @@ function showAnalysis(){
 }
 
 function showCondition(){
-    var page = $("html, body");
-
-    page.on(function(){page.stop();});
-
-    page.animate({ scrollTop: $("#section_explanation").offset().top }, 300, function(){
-        page.off();
-    });
-
-    return false;
+    $('html, body').animate({
+          scrollTop: $("#section_explanation").offset().top
+    }, 400);
 
 }
+
 
 
 
@@ -299,6 +294,10 @@ $('#submit').on('click',function(){
                                    secondResData = eval(response3);
                                    console.log(secondResData);
                                    getQuestion();
+                                   //renders new conditions into DOM
+                                   listCondition();
+                                   //scroll in to view conditions
+                                   showCondition();
                               });
 
                          // opens third accordian on enter
@@ -309,13 +308,6 @@ $('#submit').on('click',function(){
 
                          //clear previosly added conditions
                          $("#condition_list").empty();
-
-                         //renders new conditions into DOM
-                         listCondition();
-
-                         //scroll in to view conditions
-                         showCondition();
-
 
                          //reveals morequestions button
                          $('#moreQuestions').removeClass('hidden');
