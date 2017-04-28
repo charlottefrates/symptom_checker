@@ -137,6 +137,10 @@ background: black;
     text-align: center;
 }
 
+input:-webkit-autofill {
+    background-color: white !important;
+}
+
 
 
 /* ---- Text----- */
