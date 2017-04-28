@@ -198,6 +198,7 @@ $('#info_submit').on('click',function(event){
 
 
                               if(firstResData.mentions.length === 0){
+                                  $('#loading-container').addClass('hidden');
                                    alert('Your symptom was not found. Please seek professional care.');
                               }
 
