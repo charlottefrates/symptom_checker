@@ -149,6 +149,7 @@ $('#info_submit').on('click',function(event){
 
                          $('#container').removeClass('hidden');
                          $('#footer').removeClass('hidden');
+                         $('#loading-container').removeClass('hidden');
 
                          // updates global variables based on user input
                          //assignment
@@ -201,33 +202,37 @@ $('#info_submit').on('click',function(event){
                               }
 
                               else{
-                                   showAnalysis();
-                                   // collapses accordian 1
-                                   //$('#firstAccordian').attr('checked',true);
-                                   // opens second accordian on response
-                                   $('#secondAccordian').removeAttr('checked');
-                                   // reveals start diagnosis questions
-                                   $('#start_questions').removeClass('hidden');
+
+                                  setInterval (function () {
+
+                                      $('#loading-container').addClass('hidden');
+                                       showAnalysis();
+                                       // collapses accordian 1
+                                       //$('#firstAccordian').attr('checked',true);
+                                       // opens second accordian on response
+                                       $('#secondAccordian').removeAttr('checked');
+                                       // reveals start diagnosis questions
+                                       $('#start_questions').removeClass('hidden');
 
 
-                                   console.log('First Request Response (variable name:firstResData):'+ firstResData);
-                                   console.log('This will get sent do get diagnosis questions (variable name: responseData)' + responseData);
-                                   $('#patientAge').text(age);
-                                   $('#patientGender').text(sex);
-                                   $('#patientSymptom').text(firstResData.mentions[0].name);
+                                       console.log('First Request Response (variable name:firstResData):'+ firstResData);
+                                       console.log('This will get sent do get diagnosis questions (variable name: responseData)' + responseData);
+                                       $('#patientAge').text(age);
+                                       $('#patientGender').text(sex);
+                                       $('#patientSymptom').text(firstResData.mentions[0].name);
 
-                                   //updates responseData objects
-                                   responseData.sex = sex;
-                                   responseData.age = age;
-                                   responseData.evidence[0].id = firstResData.mentions[0].id;
-                              	   responseData.evidence[0].choice_id = firstResData.mentions[0].choice_id;
+                                       //updates responseData objects
+                                       responseData.sex = sex;
+                                       responseData.age = age;
+                                       responseData.evidence[0].id = firstResData.mentions[0].id;
+                                  	   responseData.evidence[0].choice_id = firstResData.mentions[0].choice_id;
 
-                                   //updates next request's data variable into JSON string
-                                   diagnosisRequest.data = JSON.stringify(responseData);
+                                       //updates next request's data variable into JSON string
+                                       diagnosisRequest.data = JSON.stringify(responseData);
 
+
+                                   }, 2500);
                             }
-
-
                         });
 
                       });
