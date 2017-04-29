@@ -13,7 +13,7 @@ body {
 section{
      margin-left: auto;
      margin-right: auto;
-     margin-top: 50px;
+     margin-top: 20px;
      margin-bottom: 100px;
 }
 
@@ -26,7 +26,7 @@ h1 {
 
 h2 {
      margin: 0;
-     padding-top: 5%;
+     padding-top: 8%;
 }
 
 .background {
@@ -109,7 +109,7 @@ h2 {
 }
 
 .intro_text {
-     height: 800px;
+     height: 1000px;
      background-image:url(images/symptom_checker.jpg);
      background-size: 100% 100%;
      background-repeat: no-repeat;
@@ -186,6 +186,7 @@ input:-webkit-autofill {
 .about-text p {
     font-size: 20px;
     line-height: 35px;
+    margin-bottom: 2px;
 }
 
 .about-text{
@@ -224,6 +225,7 @@ input:-webkit-autofill {
 .anonymous-text p {
     font-size: 20px;
     line-height: 35px;
+    margin-bottom: 2px;
 }
 
 .anonymous-text h2 {
@@ -443,10 +445,54 @@ input[type="radio"] {
 }
 
 .hover:hover {
-     color: #77abec;
+     color: orange;
      cursor: pointer;
 }
 
+/* ---------------------------------- scroll to top----------------------------------- */
+
+.scrolltop {
+	display:none;
+	width:100%;
+	margin:0 auto;
+	position:fixed;
+	bottom:20px;
+	right:10px;
+}
+.scroll {
+	position:absolute;
+	right:20px;
+	bottom:20px;
+	background:#b2b2b2;
+	background:rgba(178,178,178,0.7);
+	padding:20px;
+	text-align: center;
+	margin: 0 0 0 0;
+	cursor:pointer;
+	transition: 0.5s;
+	-moz-transition: 0.5s;
+	-webkit-transition: 0.5s;
+	-o-transition: 0.5s;
+}
+.scroll:hover {
+	background:rgba(178,178,178,1.0);
+	transition: 0.5s;
+	-moz-transition: 0.5s;
+	-webkit-transition: 0.5s;
+	-o-transition: 0.5s;
+}
+.scroll:hover .fa {
+	padding-top:-10px;
+}
+.scroll .fa {
+	font-size:30px;
+	margin-top:-5px;
+	margin-left:1px;
+	transition: 0.5s;
+	-moz-transition: 0.5s;
+	-webkit-transition: 0.5s;
+	-o-transition: 0.5s;
+}
 
 /* ---------------------------------- modal pop-up----------------------------------- */
 

@@ -225,6 +225,7 @@ $('#info_submit').on('click',function(event){
                                   if(firstResData.mentions.length === 0){
                                       $('#loading-container').addClass('hidden');
                                        alert('Your symptom was not found. Please seek professional care.');
+                                       location.reload(true);
                                   }
                                   else{
 
@@ -354,13 +355,27 @@ $(document).ready(function () {
          location.reload(true);
     });
 
-    //Smooth scroll to about
+    //Smooth scroll to about when clicking nav "About"
 
     $('#about').on('click',function(){
          $('html, body').animate({
-             scrollTop: $('#saas').offset().top-55
-         }, 800, 'swing');
+             scrollTop: $('#saas').offset().top
+         }, 900, 'swing');
 
     });
+
+    // Scroll Top button
+
+    $(window).scroll(function() {
+    if ($(this).scrollTop() > 50 ) {
+        $('.scrolltop:hidden').stop(true, true).fadeIn();
+    } else {
+        $('.scrolltop').stop(true, true).fadeOut();
+    }
+});
+$(function(){
+    $(".scroll").click(function(){
+        $("html,body").animate({
+            scrollTop:$("#introduction").offset().top},"1000");return false})});
 
 });
