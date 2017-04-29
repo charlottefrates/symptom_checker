@@ -292,7 +292,7 @@ input[type="radio"] {
 }
 
 .inputfield {
-     margin-top: 51px;
+     margin-top: 30px;
      padding-top: 30px;
      margin-left: auto;
      margin-right: auto;
@@ -912,6 +912,7 @@ input[type="radio"] {
 
 }
 
+
 /* ----------- ipads ----------- */
 
 @media only screen
@@ -942,7 +943,7 @@ and (max-device-width : 1024px)  {
 }
 
 .inputfield {
-    margin-top: 30px;
+    margin-top: 80px;
     padding-top: 30px;
     margin-left: 68px;
     width: 80%;
