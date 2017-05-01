@@ -121,7 +121,7 @@ function listCondition(){
                               + "</li>"
                               + "</ul>";
 
-                $("#condition_list").append(text);
+                $("#condition_list").append(text).fadeIn(2000);
 
            });
 
@@ -347,12 +347,12 @@ $(document).ready(function () {
 
     //Play Again
     $("#home").click(function() {
-         location.reload(true);
+         location.href = location.href;
     });
 
     //Check Another symptom
     $("#checkAnother").click(function() {
-         location.reload(true);
+         location.href = location.href;
     });
 
     //Smooth scroll to about when clicking nav "About"
