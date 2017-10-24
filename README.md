@@ -1,8 +1,9 @@
 # Name: Symptom Checker
+Application designed for desktop and tablets.
 
 ## Technologies Used: HTML/CSS/JavaScript/jQuery
 
-## Purpose: 
+## Purpose:
 
 Users can add information about health issues and get possible health conditions
 
