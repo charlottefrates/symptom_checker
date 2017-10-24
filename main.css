@@ -812,7 +812,7 @@ input[type="radio"] {
 
 /* ----------- mobile phones ----------- */
 
-@media only screen and (max-width: 945px) {
+@media only all and (max-width: 945px) {
      #welcome {
     margin-top: 3%;
     box-sizing: border-box;
@@ -919,9 +919,9 @@ input[type="radio"] {
 
 /* ----------- ipads ----------- */
 
-@media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1024px)  {
+@media only all
+and (min-width : 768px)
+and (max-width : 1024px)  {
 
      h1 {
          color: white;
@@ -981,3 +981,23 @@ and (max-device-width : 1024px)  {
 
 
 }
+
+
+@media only all
+and (min-width : 946px)
+and (max-width : 1291px)  {
+
+.powered{
+     display: none;
+     }
+
+.navright{
+     width: 100% !important;
+}
+
+#banner{
+     color:white;
+     padding-top: 10%;
+}
+
+ }
