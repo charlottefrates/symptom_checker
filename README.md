@@ -1,5 +1,5 @@
 # Name: Symptom Checker
-Application designed for desktop and tablets.
+
 
 ## Technologies Used: HTML/CSS/JavaScript/jQuery
 
