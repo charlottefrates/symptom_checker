@@ -956,15 +956,29 @@ and (max-width : 1024px)  {
 #select {
     display: flex;
     margin-top: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 19px;
     border: 2px solid #BDC3C7;
     height: 57px;
-    width: 99%;
+    width: 516px;
     padding-left: 10px;
     font-size: 10pt;
     background: white;
     -webkit-border-radius: 5px;
+    margin-left: 23%;
 }
+
+#patient_age {
+     border-style: solid;
+border-color: #BDC3C7;
+padding-left: 10px;
+font-size: 10pt;
+margin-bottom: 23px;
+height: 50px;
+border-radius: 5px;
+width: 505px;
+margin-left: 11%;
+}
+
 
 #symptoms {
     display: flex;
@@ -973,10 +987,11 @@ and (max-width : 1024px)  {
     border-style: solid;
     border-color: #BDC3C7;
     font-size: 10pt;
-    width: 96%;
+    width: 500px;
     height: 50px;
     margin-bottom: 20px;
     border-radius: 5px;
+    margin-left: 23%;
 }
 
 
@@ -1000,4 +1015,48 @@ and (max-width : 1291px)  {
      padding-top: 10%;
 }
 
+
+
  }
+
+
+ @media only all
+ and (min-width : 1025px)
+ and (max-width : 1345px)  {
+
+      #patient_age {
+    border-style: solid;
+    border-color: #BDC3C7;
+    padding-left: 10px;
+    font-size: 10pt;
+    margin-bottom: 10px;
+    height: 50px;
+    border-radius: 5px;
+    width: 295px;
+}
+
+#select {
+    color: grey;
+    border: 2px solid #BDC3C7;
+    height: 57px;
+    width: 295px;
+    padding-left: 10px;
+    font-size: 10pt;
+    background: white;
+    -webkit-border-radius: 5px;
+}
+
+#symptoms {
+    border-style: solid;
+    border-color: #BDC3C7;
+    padding-left: 10px;
+    font-size: 10pt;
+    height: 50px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    width: 514px;
+}
+
+
+
+  }
